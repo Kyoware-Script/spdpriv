@@ -1,0 +1,2812 @@
+-- # spdpriv made as a esp nd smooth aimlock custom by spd
+-- // krone yup
+-- // hello?
+-- // help.me better btw
+getgenv().Script = {
+    ["GLOBAL_Key"] = "",
+    ["GLOBAL_Intro"] = true,
+    ["GLOBAL_Spoofer"] = true,
+    ["GLOBAL_Resolver"] = true,
+    ["GLOBAL_VelocityMode"] = "Roblox", --[[ Changing to "Custom" may help with velocity resolving ]]
+    ["GLOBAL_Unload"] = false,
+    ["GLOBAL_UnlockFPS"] = true,
+    ["GLOBAL_FPSCap"] = 999,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    --// Removed this
+    ["FRAMEWORK_Threading"] = {["Main Threads"] = "Heartbeat", ["Other Threads"] = "RenderStepped"}, --[[ https://create.roblox.com/docs/reference/engine/classes/RunService ]]
+    ["FRAMEWORK_EnableSwapChain"] = false,
+    ["FRAMEWORK_SwapChainKeybind"] = "T",
+    ["FRAMEWORK_ThreadSwapChain"] = {["Main Threads"] = "Heartbeat", ["Other Threads"] = "Heartbeat"},   --[[ https://create.roblox.com/docs/reference/engine/classes/RunService ]]
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    --// Removed this
+    ["LUAS_SafeMode"] = false,
+    ["LUAS_AllowOutput"] = true,
+    ["LUAS_LimitHTTPRequests"] = { true, 5 },
+    ["LUAS_AllowScriptExecution"] = true,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["SAFETY_Panic"] = false,
+    ["SAFETY_HideVisual"] = false,
+    ["SAFETY_PanicBind"] = "V",
+    ["SAFETY_UnloadBind"] = "T",
+    ["SAFETY_HideVisualBind"] = "H",
+    ["SAFETY_AntiAimViewer"] = true,
+    --// Removed this
+    ["SAFETY_AntiClientCurve"] = false,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    --// Removed this
+    ["UNIVERSAL_Enabled"] = true,  
+    ["UNIVERSAL_TeamCheck"] = true,
+    ["UNIVERSAL_Predict"] = false,
+    ["UNIVERSAL_UseHitChance"] = false,
+    ["UNIVERSAL_HitChance"] = 40,
+    ["UNIVERSAL_Prediction"] = { 0.05, 0.11, 0.06 }, --[[ X, Y, Z ]]--
+    ["UNIVERSAL_AimBone"] = {"Head", "Torso", "Stomach"}, --[[ Head, Torso, Stomach ]]
+    ["UNIVERSAL_UseNearestAimBone"] = true,
+    ["UNIVERSAL_Box"] = { ["Enabled"] = true, ["Size"] = { ["X"] = 3, ["Y"] = 4 }, ["Color"] = Color3.fromRGB(220, 198, 198) },
+    ["UNIVERSAL_Chams"] = { ["Enabled"] = true, ["Color"] = Color3.fromRGB(181, 209, 228), ["Outline"] = Color3.fromRGB(0, 0, 0), ["Transparency"] = 0.1 },
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["SILENT_Enabled"] = true,
+    ["SILENT_Sticky"] = true,
+    ["SILENT_FOVType"] = "CircleFOV", -- [[ CircleFOV, BoxFOV ]]
+    ["SILENT_Mode"] = "FOV", -- [[ FOV, Target ]]
+    ["SILENT_TargetBind"] = "Z", -- > Note: Only works with target mode
+    ["SILENT_Synchronize"] = true, -- > Note: Only works with target mode
+    ["SILENT_VisualizeTarget"] = false,
+    ["SILENT_VisualizeSize"] = { 10, 10 }, -- [[ X, Y ]]
+    ["SILENT_VisualizeColor"] = Color3.fromRGB(181, 209, 228),
+    ["SILENT_Style"] = "Safe", -- [[ Safe, Blatant ]]
+    ["SILENT_AimBone"] = {"UpperTorso"},
+    ["SILENT_AimType"] = "Nearest Point", -- [[ Nearest Part, Nearest Point, Blank = AimBone by default ]]
+    ["SILENT_NearestType"] = "Scalar", -- [[ Generic, Full, Partial, Scalar ]]
+    ["SILENT_UseHitChance"] = false,
+    ["SILENT_HitChance"] = 73,
+    ["SILENT_AntiGroundShots"] = false,
+    ["SILENT_MaxAntiCurveAngle"] = 7,
+    ["SILENT_Predict"] = true,
+    ["SILENT_Prediction"] = { 0.145, 0.145, 0.145 }, --[[ X, Y, Z ]]--
+    ["SILENT_PingPrediction"] = false,
+    ["SILENT_AutoPrediction"] = true,
+    ["SILENT_PingTable"] = {
+        ["20 - 30"] = { 0.11120, 0.11120, 0.11120 }, --[[ X,  Y,  Z ]]--
+        ["30 - 40"] = { 0.11614, 0.11614, 0.11614 }, --[[ X,  Y,  Z ]]--
+        ["40 - 50"] = { 0.12053, 0.12053, 0.12053 }, --[[ X,  Y,  Z ]]--
+        ["50 - 60"] = { 0.12053, 0.12053, 0.12053 }, --[[ X,  Y,  Z ]]--
+        ["60 - 70"] = { 0.12790, 0.12790, 0.12790 }, --[[ X,  Y,  Z ]]--
+        ["70 - 80"] = { 0.12793, 0.12793, 0.12793 }, --[[ X,  Y,  Z ]]--
+        ["80 - 90"] = { 0.129591, 0.129591, 0.129591 }, --[[ X,  Y,  Z ]]--
+        ["90 - 100"] = { 0.13070, 0.13070, 0.13070 }, --[[ X,  Y,  Z ]]--
+        ["100 - 110"] = { 0.13916, 0.13916, 0.13916 }, --[[ X,  Y,  Z ]]--
+        ["110 - 120"] = { 0.14664, 0.14664, 0.14664 }, --[[ X,  Y,  Z ]]--
+        ["120 - 130"] = { 0.14745, 0.14745, 0.14745 }, --[[ X,  Y,  Z ]]--
+        ["130 - 140"] = { 0.150, 0.150, 0.150 }, --[[ X,  Y,  Z ]]--
+        ["140 - 150"] = { 0.155, 0.155, 0.155 }, --[[ X,  Y,  Z ]]--
+        ["150 - 160"] = { 0.1545, 0.1545, 0.1545 }, --[[ X,  Y,  Z ]]--
+        ["160 - 170"] = { 0.1567, 0.1567, 0.1567 }, --[[ X,  Y,  Z ]]--
+        ["170 - 180"] = { 0.1672, 0.1672, 0.1672 }, --[[ X,  Y,  Z ]]--
+        ["180 - 190"] = { 0.1746, 0.1746, 0.1746 }, --[[ X,  Y,  Z ]]--
+        ["190 - 200"] = { 0.1746, 0.1746, 0.1746 }, --[[ X,  Y,  Z ]]--
+    },
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["ASSIST_Enabled"] = true,
+    ["ASSIST_Type"] = "Camera", -- [[ Mouse, Camera ]] > Note: Mouse is currently broken due to solara's input library
+    ["ASSIST_Deadzone"] = false,
+    ["ASSIST_Keybind"] = "C",
+    ["ASSIST_HoldMode"] = true,
+    ["ASSIST_Sticky"] = true,
+    ["ASSIST_AimBone"] = {"UpperTorso"},
+    ["ASSIST_SmoothingX"] = 5,
+    ["ASSIST_SmoothingY"] = 5,
+    ["ASSIST_StickynessX"] = 1,
+    ["ASSIST_StickynessY"] = 1,
+    ["ASSIST_AntiGroundShots"] = true,
+    ["ASSIST_Predict"] = true,
+    ["ASSIST_Prediction"] = { 0.145, 0.05, 0.145 }, --[[ X, Y, Z ]]--
+    ["ASSIST_PingPrediction"] = false,
+    ["ASSIST_AutoPrediction"] = true,
+    ["ASSIST_PingTable"] = { 
+        ["20 - 30"] = { 0.11120, 0.11120, 0.11120 }, --[[ X,  Y,  Z ]]--
+        ["30 - 40"] = { 0.11614, 0.11614, 0.11614 }, --[[ X,  Y,  Z ]]--
+        ["40 - 50"] = { 0.12053, 0.12053, 0.12053 }, --[[ X,  Y,  Z ]]--
+        ["50 - 60"] = { 0.12053, 0.12053, 0.12053 }, --[[ X,  Y,  Z ]]--
+        ["60 - 70"] = { 0.12790, 0.12790, 0.12790 }, --[[ X,  Y,  Z ]]--
+        ["70 - 80"] = { 0.12793, 0.12793, 0.12793 }, --[[ X,  Y,  Z ]]--
+        ["80 - 90"] = { 0.129591, 0.129591, 0.129591 }, --[[ X,  Y,  Z ]]--
+        ["90 - 100"] = { 0.13070, 0.13070, 0.13070 }, --[[ X,  Y,  Z ]]--
+        ["100 - 110"] = { 0.13916, 0.13916, 0.13916 }, --[[ X,  Y,  Z ]]--
+        ["110 - 120"] = { 0.14664, 0.14664, 0.14664 }, --[[ X,  Y,  Z ]]--
+        ["120 - 130"] = { 0.14745, 0.14745, 0.14745 }, --[[ X,  Y,  Z ]]--
+        ["130 - 140"] = { 0.150, 0.150, 0.150 }, --[[ X,  Y,  Z ]]--
+        ["140 - 150"] = { 0.155, 0.155, 0.155 }, --[[ X,  Y,  Z ]]--
+        ["150 - 160"] = { 0.1545, 0.1545, 0.1545 }, --[[ X,  Y,  Z ]]--
+        ["160 - 170"] = { 0.1567, 0.1567, 0.1567 }, --[[ X,  Y,  Z ]]--
+        ["170 - 180"] = { 0.1672, 0.1672, 0.1672 }, --[[ X,  Y,  Z ]]--
+        ["180 - 190"] = { 0.1746, 0.1746, 0.1746 }, --[[ X,  Y,  Z ]]--
+        ["190 - 200"] = { 0.1746, 0.1746, 0.1746 }, --[[ X,  Y,  Z ]]--
+    },
+    ["ASSIST_Randomize"] = true,
+    ["ASSIST_Randomization"] = { 23, 5, 16 }, --[[ X, Y, Z ]]--
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["PINGSPIKE_Enabled"] = false,
+    ["PINGSPIKE_Keybind"] = "H",
+    ["PINGSPIKE_RealSpike"] = false,
+    ["PINGSPIKE_Replicate"] = 0.5,
+    ["PINGSPIKE_Spike"] = 100,
+    ["PINGSPIKE_Time"] = 2,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["DESYNC_Enabled"] = false,
+    ["DESYNC_Keybind"] = "H",
+    ["DESYNC_Mode"] = "Streamable",
+    ["DESYNC_EnableOnLowHealth"] = { false, 100 },
+    ["DESYNC_NotifyState"] = true,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["RAID_Enabled"] = true,
+    ["RAID_Visuals"] = { ["Box"] = true, ["Names"] = true, ["Lines"] = true, ["List"] = false },
+    ["RAID_HideVisuals"] = "Z",
+    ["RAID_SelectPlayer"] = "G",
+    ["RAID_ClearPlayers"] = "U",
+    ["RAID_FOV"] = 50,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["RANGE_Enabled"] = false,
+    ["RANGE_DISTANCEShort"] = 15,
+    ["RANGE_DISTANCEMedium"] = 30,
+    ["RANGE_DISTANCELong"] = 60,
+    ["RANGE_GUNFOVRevolver"] = { 13, 20, 30 }, --[[ Short FOV, Medium FOV, Long FOV ]]
+    ["RANGE_GUNFOVShotgun"] = { 13, 20, 30 }, --[[ Short FOV, Medium FOV, Long FOV ]]
+    ["RANGE_GUNFOVDoubleBarrel"] = { 13, 20, 30 }, --[[ Short FOV, Medium FOV, Long FOV ]]
+    ["RANGE_GUNFOVTacticalShotgun"] = { 13, 20, 30 }, --[[ Short FOV, Medium FOV, Long FOV ]]
+    ["RANGE_GUNFOVOtherGun"] = { 13, 20, 30 }, --[[ Short FOV, Medium FOV, Long FOV ]]
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["SERVERHOP_Enabled"] = false,
+    ["SERVERHOP_Keybind"] = "L",
+    ["SERVERREJOIN_Enabled"] = false,
+    ["SERVERREJOIN_Keybind"] = "L",
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["INVENTORY_Sort"] = false,
+    ["INVENTORY_SortKeybind"] = "Z",
+    ["INVENTORY_SortFood"] = true,
+    ["INVENTORY_SortOrder"] = { "[Double-Barrel SG]", "[Revolver]", "[TacticalShotgun]" },
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["AUTOBUY_Enabled"] = false, --[[ This is currently broken for solara, please do not use this for now ]]
+    ["AUTOBUY_DoubleBarrel"] = { true, 50 }, -- [[ Enabled, Distance ]]
+    ["AUTOBUY_Revolver"] = { true, 50 }, -- [[ Enabled, Distance ]]
+    ["AUTOBUY_TacticalShotgun"] = { true, 50 }, -- [[ Enabled, Distance ]]
+    ["AUTOBUY_MediumArmor"] = { true, 50 }, -- [[ Enabled, Distance ]]
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["SILENT_FOVColor"] = Color3.fromRGB(188, 155, 182),
+    ["SILENT_FOVRadius"] = 45,
+    ["SILENT_FOVFilled"] = true,
+    ["SILENT_FOVVisible"] = true,
+    ["SILENT_FOVDynamic"] = false,
+    ["SILENT_FOVThickness"] = 1,
+    ["SILENT_FOVTransparency"] = 0.3,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["SILENT_FOVBOXColor"] = Color3.fromRGB(191, 123, 255),
+    ["SILENT_FOVBOXWidth"] = 3,
+    ["SILENT_FOVBOXHeight"] = 5,
+    ["SILENT_FOVBOXVisible"] = true,
+    ["SILENT_FOVBOXThickness"] = 2,
+    ["SILENT_FOVBOXPrediction"] = false,
+    ["SILENT_FOVBOXTransparency"] = 1,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["ASSIST_FOVColor"] = Color3.fromRGB(191, 123, 255),
+    ["ASSIST_FOVRadius"] = 500,
+    ["ASSIST_FOVFilled"] = false,
+    ["ASSIST_FOVVisible"] = false,
+    ["ASSIST_FOVDynamic"] = false,
+    ["ASSIST_FOVThickness"] = 1,
+    ["ASSIST_FOVTransparency"] = 1,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["DEADZONE_FOVColor"] = Color3.fromRGB(0, 0, 0),
+    ["DEADZONE_FOVRadius"] = 30,
+    ["DEADZONE_FOVFilled"] = false,
+    ["DEADZONE_FOVVisible"] = false,
+    ["DEADZONE_FOVDynamic"] = false,
+    ["DEADZONE_FOVThickness"] = 1,
+    ["DEADZONE_FOVTransparency"] = 0.5,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["RAID_BOXColor"] = Color3.fromRGB(191, 123, 255),
+    ["RAID_BOXThickness"] = 1.8,
+    ["RAID_BOXTransparency"] = 1,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["RAID_NAMEColor"] = Color3.fromRGB(191, 123, 255),
+    ["RAID_NAMEThickness"] = 1,
+    ["RAID_NAMEOutline"] = true,
+    ["RAID_NAMESize"] = 13,
+    ["RAID_NAMETransparency"] = 1,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["RAID_LINEColor"] = Color3.fromRGB(191, 123, 255),
+    ["RAID_LINEFrom"] = "Bottom", --[[ Mouse, Bottom ]]
+    ["RAID_LINEThickness"] = 1,
+    ["RAID_LINETransparency"] = 1,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["ASSISTCHECK_ForceField"] = true,
+    ["ASSISTCHECK_Visible"] = true,
+    ["ASSISTCHECK_Knocked"] = true,
+    ["ASSISTCHECK_Grabbed"] = true,
+    ["ASSISTCHECK_Typing"] = true,
+    ["ASSISTCHECK_Friend"] = false,
+    ["ASSISTCHECK_Alive"] = true,
+    ["ASSISTCHECK_Wall"] = true,
+    ["ASSISTCHECK_Tool"] = false,
+    ["ASSISTCHECK_Team"] = false,
+    ["ASSISTCHECK_Crew"] = false,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["SILENTCHECK_ForceField"] = true,
+    ["SILENTCHECK_Visible"] = true,
+    ["SILENTCHECK_Knocked"] = true,
+    ["SILENTCHECK_Grabbed"] = true,
+    ["SILENTCHECK_Friend"] = false,
+    ["SILENTCHECK_Alive"] = true,
+    ["SILENTCHECK_Wall"] = true,
+    ["SILENTCHECK_Team"] = false,
+    ["SILENTCHECK_Crew"] = false,
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ["GLOBALCHECK_Knocked"] = true,
+    ["GLOBALCHECK_Grabbed"] = true
+}
+--
+if not LPH_OBFUSCATED then
+	LPH_JIT_MAX = function(...)
+		return (...)
+	end
+	LPH_NO_VIRTUALIZE = function(...)
+		return (...)
+	end
+end
+--
+for Index, Connection in next, getconnections(workspace.CurrentCamera.Changed) do
+    Connection:Disable()
+end
+--
+--
+local SpdwarePrivate, DataModel, Math, Roblox; do
+    SpdwarePrivate = {
+        Players = {
+            [1] = nil,
+            [2] = nil
+        },
+        Bools = {
+            State = false,
+            State2 = false,
+            Desynced = false,
+            AutomaticDesync = false,
+            CanFOVsDraw = true,
+            BoxBounding = false,
+        },
+        Environment = {
+            CanDraw = true,
+            Priority = {},
+            PlayerLabel = Drawing.new("Text"),
+            PriorityLines = {},
+            PriorityTexts = {},
+            PrioritySquares = {}
+        },
+        Threads = {},
+        Functions = {},
+        VelocityData = {
+            Air = {
+                XSub = 0.05,
+                YSub = 0.05,
+                ZSub = 0.05
+            }
+        },
+        TimeData = {
+            CurrentTick = tick(),
+        },
+        BoxData = {
+            Lines = {},
+            MainBox = Drawing.new("Square")
+        }, 
+        NetworkData = {
+            Ranges = {
+               
+            }
+        },
+        Resolver = {
+            EntityPosition = nil,
+            EntityRate = nil,
+            EntityP = 1,
+            EntityTimes = {},
+            EntityPositions = {},
+        }
+    };
+    --
+    DataModel = {};
+    Roblox = {};
+    Math = {};
+end
+--
+SpdwarePrivate.__index = SpdwarePrivate
+DataModel.__index = DataModel
+Math.__index = Math
+--
+getgenv = getgenv
+mousemoverel = mousemoverel
+getgc = getgc
+getreg = getreg
+Drawing = Drawing
+--
+local CreateRenderObject = function(Class, Property)
+    local Drawing = Drawing.new(Class)
+    for Property, Value in pairs(Property) do
+        Drawing[Property] = Value
+    end
+    return Drawing
+end
+--
+local Connected, UserInputService, RunService, Workspace, GuiService, GameStats, Lighting = game:GetService("Players"), game:GetService("UserInputService"), game:GetService("RunService"), game:GetService("Workspace"), game:GetService("GuiService"), game:GetService("Stats"), game:GetService("Lighting")
+local XYInset, Ping, LocalMouse, LocalPlayer, Camera, ScreenGui, Sky, HTTPRequest, Network, HTTPService = GuiService:GetGuiInset(), GameStats.PerformanceStats.Ping, Connected.LocalPlayer:GetMouse(), Connected.LocalPlayer, Workspace.CurrentCamera, Instance.new("ScreenGui"), Lighting:FindFirstChildWhichIsA("Sky"), http and http.request or http_request or request or httprequest, settings():GetService("NetworkSettings"), game:GetService("HttpService")
+local Abs, Acos, Asin, Atan, Atan2, Ceil, Cos, Deg, Exp, Floor, Fmod, Frexp, Huge, Ldexp, Log, Max, Min, Modf, Pi, Pow, Rad, Random, Randomseed, Sin, Sqrt, Tan, Clamp = math.abs, math.acos, math.asin, math.atan, math.atan2, math.ceil, math.cos, math.deg, math.exp, math.floor, math.fmod, math.frexp, math.huge, math.ldexp, math.log, math.max, math.min, math.modf, math.pi, math.pow, math.rad, math.random, math.randomseed, math.sin, math.sqrt, math.tan, math.clamp
+--
+if getgenv().Script["GLOBAL_Intro"] then
+
+end
+--
+local SilentFOVCircle = CreateRenderObject("Circle", {})
+--
+local AimbotFOVCircle = CreateRenderObject("Circle", {})
+--
+local DeadzoneFOVCircle = CreateRenderObject("Circle", {})
+--
+local VisualCircle = CreateRenderObject("Image", {})
+--
+--[[ Core Functions ]]--
+do
+    LPH_JIT_MAX(function()
+        function SpdwarePrivate:Thread(ThreadName, Service, Function)
+            local Connection = Service:Connect(Function)
+            SpdwarePrivate.Threads[ThreadName] = Connection
+            return Connection
+        end
+        --
+        function SpdwarePrivate:ThreadFunction(Func, ...)
+            coroutine.wrap(Func)(...)
+        end
+        --
+        function Math:Vector3Mod(v1, v2)
+            return Vector3.new(v1.X % v2.X, v1.Y % v2.Y, v1.Z % v2.Z)
+        end
+        --
+        function Math:XYRadius(RadiusX, DistanceX, RadiusY, DistanceY)
+            return RadiusX > DistanceX and RadiusY > DistanceY and (DistanceX^2 + DistanceY^2) < (1/0)^2
+        end
+        --
+        function Roblox:GetCpuUsage()
+            return game:GetService("Stats"):FindFirstChild("PerformanceStats").CPU:GetValue()
+        end
+        --
+        function Roblox:GetGpuUsage()
+            return game:GetService("Stats"):FindFirstChild("PerformanceStats").GPU:GetValue()
+        end
+        --
+        function SpdwarePrivate:GetCharacter(Player)
+            return Player.Character
+        end
+        --
+        function SpdwarePrivate:IsClient(Player)
+            local Character = SpdwarePrivate:GetCharacter(Player)
+            local Humanoid = (Character and Character:FindFirstChildWhichIsA("Humanoid")) or false
+            local RootPart = (Humanoid and Humanoid.RootPart)
+            --
+            return Character, Humanoid, RootPart
+        end
+        --
+        function SpdwarePrivate:IsEnemy(Player)
+            return Player.Character and Player ~= LocalPlayer and Player.Character:FindFirstChild("HumanoidRootPart")
+        end
+        --
+        function SpdwarePrivate:GetView(Origin)
+            if (Origin == "Top") then
+                local Character, Humanoid, RootPart = SpdwarePrivate:IsClient(LocalPlayer)
+                local Head = Character:FindFirstChild("Head"); if Head then
+                    return Head.CFrame.Position
+                end
+            elseif (Origin == "Humanoid") then
+                local Character, Humanoid, RootPart = SpdwarePrivate:IsClient(LocalPlayer)
+                --
+                if (RootPart) then
+                    return RootPart.CFrame.Position
+                end
+            end
+            --
+            return Camera.CFrame.Position
+        end
+        --
+        function SpdwarePrivate:ObjectCheck(Part, Origin, Ignore, Distance)
+            local Ignore = Ignore or {}
+            local Distance = Distance or 2000
+            --
+            local Cast = Ray.new(Origin, (Part.Position - Origin).Unit * Distance)
+            local Hit = Workspace:FindPartOnRayWithIgnoreList(Cast, Ignore)
+            --
+            if Hit and Hit:IsDescendantOf(Part.Parent) then
+                return true, Hit
+            else
+                return false, Hit
+            end
+            --
+            return false, nil
+        end
+        --
+        function SpdwarePrivate:GetMagnitude(Pos1, Pos2, Magnitude)
+            return (Pos1 - Pos2).Magnitude <= Magnitude
+        end
+        --
+        function SpdwarePrivate:Get3DMagnitude(Position)
+            local Hit = LocalMouse.Hit.Position
+            local Vector = Position - Hit
+            return Vector.Magnitude
+        end
+        --
+        function SpdwarePrivate:GetContext()
+            local Games = {
+                [1008451066] = {
+                    Name = "Da Hood", 
+                    HoodGame = true,
+                    Argument = "UpdateMousePosI", 
+                    Remote = "MainEvent", 
+                    BodyEffects = "K.O",
+                    ExtraArg = "P",
+                    Grabbed = function(Player)
+                        if Player and Player.Character then
+                            if Player.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
+                                return false
+                            else
+                                return true
+                            end
+                        else
+                            return true
+                        end
+                    end,
+                    Knocked = function(Player)
+                        if Player and Player.Character then
+                            local BE = Player.Character:FindFirstChild("BodyEffects")
+                            local KO = Player.Character:FindFirstChild("BodyEffects")["K.O"] or false
+                            if KO and KO.Value == false then
+                                return true
+                            else
+                                return false
+                            end
+                        else
+                            return true
+                        end
+                    end,
+                },
+                [3634139746] = {
+                    Name = "Hood Customs", 
+                    HoodGame = true,
+                    Argument = "MousePosUpdate", 
+                    Remote = "MainEvent", 
+                    BodyEffects = "K.O",
+                    ExtraArg = "P",
+                    Grabbed = function(Player)
+                       return true
+                    end,
+                    Knocked = function(Player)
+                        if Player and Player.Character then
+                            local BE = Player.Character:FindFirstChild("BodyEffects")
+                            local KO = Player.Character:FindFirstChild("BodyEffects")["K.O"] or false
+                            if KO and KO.Value == false then
+                                return true
+                            else
+                                return false
+                            end
+                        else
+                            return true
+                        end
+                    end,
+                },
+                [5978701207] = {
+                    Name = "Untitled Customs", 
+                    HoodGame = true,
+                    Argument = "UpdateMousePos", 
+                    Remote = "untitledcustoms", 
+                    BodyEffects = "K.O",
+                    ExtraArg = "P",
+                    Grabbed = function(Player)
+                       return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [5611456810] = {
+                    Name = "Dah Hood", 
+                    HoodGame = true,
+                    Argument = "UpdateMousePos", 
+                    Remote = "MainEvent", 
+                    BodyEffects = "K.O",
+                    ExtraArg = "P",
+                    Grabbed = function(Player)
+                       return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [5807321331] = {
+                    Name = "Dah Hood", 
+                    HoodGame = true,
+                    Argument = "UpdateMousePos", 
+                    Remote = "MainEvent", 
+                    BodyEffects = "K.O",
+                    ExtraArg = "P",
+                    Grabbed = function(Player)
+                       return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [1958807588] = {
+                    Name = "Hood Modded", 
+                    HoodGame = true,
+                    Argument = "MousePos", 
+                    Remote = "Bullets",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [5925860627] = {
+                    Name = "OG Da Hood", 
+                    HoodGame = true,
+                    Argument = "UpdateMousePos", 
+                    Remote = "MainEvent",
+                    ExtraArg = "P",
+                    Grabbed = function(Player)
+                        if Player and Player.Character then
+                            if Player.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
+                                return false
+                            else
+                                return true
+                            end
+                        else
+                            return true
+                        end
+                    end,
+                    Knocked = function(Player)
+                        if Player and Player.Character then
+                            local BE = Player.Character:FindFirstChild("BodyEffects")
+                            local KO = Player.Character:FindFirstChild("BodyEffects")["K.O"] or false
+                            if KO and KO.Value == false then
+                                return true
+                            else
+                                return false
+                            end
+                        else
+                            return true
+                        end
+                    end,
+                },
+                [5918066572] = {
+                    Name = "Da Downhill", 
+                    HoodGame = true,
+                    Argument = "MOUSE", 
+                    Remote = "MAINEVENT",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [5862431801] = {
+                    Name = "Dee Hood", 
+                    HoodGame = true,
+                    Argument = "UpdateMousePos", 
+                    Remote = "MainEvent",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [5568972966] = {
+                    Name = "Da Hood: Zero Delay", 
+                    HoodGame = true,
+                    Argument = "UpdateMousePos", 
+                    Remote = "MainEvent",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [5738501053] = {
+                    Name = "Da Uphill", 
+                    HoodGame = true,
+                    Argument = "MOUSE", 
+                    Remote = "MAINEVENT",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [5955728360] = {
+                    Name = "Da Hood Bot Aim Trainer", 
+                    HoodGame = true,
+                    Argument = "MOUSE", 
+                    Remote = "MAINEVENT",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [3985694250] = {
+                    Name = "1v1 Hood Aim Trainer", 
+                    HoodGame = true,
+                    Argument = "UpdateMousePos", 
+                    Remote = "MainEvent",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [5235037897] = {
+                    Name = "Da Strike",
+                    HoodGame = true,
+                    Argument = "MOUSE",
+                    Remote = "MAINEVENT",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return Object.Character:FindFirstChild("Humanoid").Health > 5 and true or false
+                    end,
+                },
+                [1430993116] = {
+                    Name = "a literal baseplate.", 
+                    HoodGame = false,
+                    Argument = "MOUSE", 
+                    Remote = "MAINEVENT",
+                    ExtraArg = "P",
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return true
+                    end,
+                },
+                [1494262959] = {
+                    Name = "Criminality", 
+                    HoodGame = false,
+                    Grabbed = function(Object)
+                        return true
+                    end,
+                    Knocked = function(Object)
+                        return true
+                    end,
+                },
+            }
+            --
+            return Games;
+        end    
+        --
+        function SpdwarePrivate:IsFriendly(Player)
+            if Player:IsFriendsWith(LocalPlayer.UserId) then
+                return false
+            else
+                return true
+            end
+        end
+        --
+        function SpdwarePrivate:IsCrew(Player)
+            local SelfCrew = LocalPlayer:WaitForChild("DataFolder"):FindFirstChild("Crew", true)
+            local EnemyCrew = Player:WaitForChild("DataFolder"):FindFirstChild("Crew", true)
+            if SelfCrew and EnemyCrew then
+                if (SelfCrew.Value ~= "" and EnemyCrew.Value ~= "") and (SelfCrew.Value == EnemyCrew.Value) then
+                    return false
+                end
+            else
+                return true
+            end
+        end
+        --
+        function SpdwarePrivate:GetHitChance(Percent)
+            Percent = math.floor(Percent)
+            local HitChance = math.floor(math.random() * 100) / 100
+            return HitChance <= Percent / 100
+        end
+        --
+        function SpdwarePrivate:GetPart(Player, Table)
+            local SelectedPart = nil;
+            local Distance = math.huge
+            for _, Part in pairs(Table) do
+                local Box = Player.Character:FindFirstChild(Part)
+                if Box then
+                    local World = Camera:WorldToViewportPoint(Box.Position)
+                    local Difference = (UserInputService:GetMouseLocation() - Vector2.new(World.X, World.Y)).Magnitude
+                    if Difference < Distance then
+                        SelectedPart = Box
+                        Distance = Difference
+                    end
+                end
+            end
+            return SelectedPart
+        end
+        --
+        function SpdwarePrivate:GetNearestPoint(Part, Type)
+            local HitPosition = LocalMouse.Hit.p
+            --
+            if Type == "Generic" then
+                if Part then
+                    local PartCenter = Part.Position
+                    local PartSize = Part.Size
+                    local Half = PartSize / 2
+                    --
+                    local NearestPosition = Vector3.new(
+                        Clamp(HitPosition.X, PartCenter.X - Half.X, PartCenter.X + Half.X),
+                        Clamp(HitPosition.Y, PartCenter.Y - Half.Y, PartCenter.Y + Half.Y),
+                        Clamp(HitPosition.Z, PartCenter.Z - Half.Z, PartCenter.Z + Half.Z)
+                    )
+                    --
+                    return NearestPosition
+                end
+            elseif Type == "Clamp" then
+                if Part ~= nil then
+                    local Hit, Half = LocalMouse.Hit.p, Part.Size * 0.5
+                    local Transform = Part.CFrame:PointToObjectSpace(Hit)
+                    local NearestPosition = Part.CFrame * Vector3.new(
+                        Clamp(Transform.X, - Half.X, Half.X), 
+                        Clamp(Transform.Y, - Half.Y, Half.Y), 
+                        Clamp(Transform.Z, - Half.Z, Half.Z)
+                    )
+                    --
+                    return NearestPosition
+                end
+            end
+            return nil
+        end
+        --
+        function SpdwarePrivate:IsABasePart(Object)
+            if string.find(Object.Name, "Gun") then
+                return
+            end
+            if table.find({"Part", "MeshPart", "BasePart"}, Object.ClassName) then
+                return true
+            end
+        end
+        --
+        function SpdwarePrivate:GetNearestBone(Object)
+            local ClosestDistance = 1 / 0
+            local BodyPart = nil
+            --
+            if (Object and Object:GetChildren()) then
+                for _, Part in next, Object:GetChildren() do
+                    if SpdwarePrivate:IsABasePart(Part) and Camera:WorldToScreenPoint(Part.Position) then
+                        local Position = Camera:WorldToScreenPoint(Part.Position)
+                        local Distance = (Vector2.new(LocalMouse.X, LocalMouse.Y) - Vector2.new(Position.X, Position.Y)).Magnitude
+                        --
+                        if (Distance < ClosestDistance) then
+                            ClosestDistance = Distance
+                            BodyPart = Part
+                        end
+                    end
+                end
+            end
+            return BodyPart
+        end
+        --
+        function SpdwarePrivate:CalculateDirection(BonePosition, BoneVelocity, TimeAhead, Formula)
+            if (Formula == "*") then
+                return BonePosition + (BoneVelocity * TimeAhead)
+            elseif (Formula == "/") then
+                return BonePosition + (BoneVelocity / TimeAhead)
+            end
+        end
+        --
+        function SpdwarePrivate:IsJumped(State, Player)
+            local Object, Humanoid, RootPart = SpdwarePrivate:IsClient(Player)
+            --
+            if (Object and Humanoid and RootPart) then
+                return (
+                    State == Enum.HumanoidStateType.Jumping or 
+                    State == Enum.HumanoidStateType.FallingDown or 
+                    Humanoid.FloorMaterial == Enum.Material.Air
+                )
+            end
+        end
+        --
+        function SpdwarePrivate:ChoosePriority(Choice)
+            if (Choice == "Aimbot") then
+                local GameIndex = SpdwarePrivate:GetContext()[game.GameId]
+                if not GameIndex then return end;
+                --
+                local Target = nil
+                local Closest = math.huge
+                local RadiusX = AimbotFOVCircle.Radius
+                local RadiusY = AimbotFOVCircle.Radius
+                local TeamCheck = false
+                for _, Player in pairs(Connected:GetPlayers()) do
+                    if (Player.Character and Player ~= LocalPlayer and Player.Character:FindFirstChild("HumanoidRootPart") and Player.Character:FindFirstChild("Humanoid")) then
+                        if (TeamCheck and Player.Team == LocalPlayer.Team) then
+                            return
+                        end
+                        --
+                        local Position, Visible = Camera:WorldToScreenPoint(Player.Character.HumanoidRootPart.Position)
+                        local DistanceX = math.abs(Position.X - LocalMouse.X)
+                        local DistanceY = math.abs(Position.Y - LocalMouse.Y)
+                        --
+                        if 
+                        --
+                        SpdwarePrivate:ObjectCheck(Player.Character.HumanoidRootPart, SpdwarePrivate:GetView("Camera"), {SpdwarePrivate:GetCharacter(LocalPlayer)}) and 
+                        GameIndex.Knocked(Player) and
+                        GameIndex.Grabbed(Player)
+                        --
+                        then
+                            if (RadiusX > DistanceX and RadiusY > DistanceY and (DistanceX^2 + DistanceY^2) < Closest^2 and Visible) then
+                                Closest = math.sqrt(DistanceX^2 + DistanceY^2)
+                                Target = Player
+                            end
+                        end 
+                    end
+                end
+                return Target
+            elseif (Choice == "Silent") then
+                local Target = nil
+                local Closest = math.huge
+                for _, v in pairs(Connected:GetPlayers()) do
+                    if (SpdwarePrivate:IsEnemy(v)) then
+                        local RootPart = v.Character:FindFirstChild("HumanoidRootPart")
+                        local CharacterSize = (Camera:WorldToViewportPoint(RootPart.Position - Vector3.new(0, 3, 0)).Y - Camera:WorldToViewportPoint(RootPart.Position + Vector3.new(0, 2.6, 0)).Y) / 2
+                        --
+                        local WidthMultiplier = getgenv().Script["SILENT_FOVBOXWidth"]
+                        local HeightMultiplier = getgenv().Script["SILENT_FOVBOXHeight"]
+                        --  
+                        local Width = math.floor(CharacterSize * WidthMultiplier)
+                        local Height = math.floor(CharacterSize * HeightMultiplier)
+                        local Box = Vector2.new(Width, Height)
+                        --
+                        local RadiusX = getgenv().Script["SILENT_FOVType"] == "BoxFOV" and Box.Y / 2 or SilentFOVCircle.Radius
+                        local RadiusY = getgenv().Script["SILENT_FOVType"] == "BoxFOV" and Box.Y / 2 or SilentFOVCircle.Radius
+                        --
+                        local Position, Visible = Camera:WorldToScreenPoint(v.Character[tostring(SpdwarePrivate:GetNearestBone(v.Character))].Position)
+                        local DistanceX = math.abs(Position.X - LocalMouse.X)
+                        local DistanceY = math.abs(Position.Y - LocalMouse.Y)
+                        --
+                        local GameIndex = SpdwarePrivate:GetContext()[game.GameId]
+                        if not GameIndex then return end;
+                        --
+                        if 
+                        --
+                        SpdwarePrivate:ObjectCheck(v.Character.HumanoidRootPart, SpdwarePrivate:GetView("Camera"), {SpdwarePrivate:GetCharacter(LocalPlayer)}) and 
+                        GameIndex.Knocked(v) and
+                        GameIndex.Grabbed(v)
+                        then
+                            if (RadiusX > DistanceX and RadiusY > DistanceY and (DistanceX^2 + DistanceY^2) < Closest^2 and Visible) then
+                                Closest = math.sqrt(DistanceX^2 + DistanceY^2)
+                                Target = v
+                            end
+                        end
+                    end 
+                end
+                return Target
+            end
+        end
+        --
+        function SpdwarePrivate:Rotation(Position, BoxRotation, BoxSize)
+            return Position.X >= BoxRotation.X and
+            Position.X <= BoxRotation.X + BoxSize.X and
+            Position.Y >= BoxRotation.Y and
+            Position.Y <= BoxRotation.Y + BoxSize.Y
+        end
+        --
+        function SpdwarePrivate:UpdateBox()
+            local Selection = SpdwarePrivate.Players[2]
+            --
+            if Selection and Selection.Character then
+                local Head = Selection.Character:FindFirstChild("Head")
+                local Humanoid = Selection.Character:FindFirstChild("Humanoid")
+                local RootPart = Selection.Character:FindFirstChild("HumanoidRootPart")
+                local AntiFloor = getgenv().Script["SILENT_AntiGroundShots"] and 0.011 
+                local Prediction = getgenv().Script["SILENT_FOVBOXPrediction"]
+                local Numbers = getgenv().Script["SILENT_Prediction"]
+                local Position;
+                --
+                if (Prediction) then
+                    Position = Vector3.new(Numbers[1], Numbers[2], Numbers[3])
+                else
+                    Position = Vector3.new(0, 0, 0)
+                end
+                --
+                if Head and Humanoid and RootPart then
+                    --
+                    local Screen, Visible = Camera:WorldToViewportPoint(RootPart.Position + RootPart.Velocity * Position)
+                    --
+                    if Visible then
+                        local CharacterSize = (Camera:WorldToViewportPoint(RootPart.Position - Vector3.new(0, 3, 0)).Y - 
+                        Camera:WorldToViewportPoint(RootPart.Position + Vector3.new(0, 2.6, 0)).Y) / 2
+                        --
+                        local BoxWidth = math.floor(CharacterSize * getgenv().Script["SILENT_FOVBOXWidth"])
+                        local BoxHeight = math.floor(CharacterSize * getgenv().Script["SILENT_FOVBOXHeight"])
+                        local BoxPosition = Vector2.new(Screen.X - BoxWidth / 2, Screen.Y - BoxHeight / 2)
+                        -- 
+                        SpdwarePrivate.BoxData.MainBox.Visible = false
+                        SpdwarePrivate.BoxData.MainBox.Transparency = 1
+                        SpdwarePrivate.BoxData.MainBox.Thickness = 1
+                        SpdwarePrivate.BoxData.MainBox.Color = Color3.fromRGB(0, 0, 0)
+                        SpdwarePrivate.BoxData.MainBox.Size = Vector2.new(BoxWidth, BoxHeight)
+                        SpdwarePrivate.BoxData.MainBox.Position = BoxPosition
+                        --
+                        local L_Width = (BoxWidth / 5)
+                        local L_Height = (BoxHeight / 6)
+                        local L_T = 2
+                        --
+                        if #SpdwarePrivate.BoxData.Lines == 0 then
+                            for i = 1, 16 do
+                                table.insert(SpdwarePrivate.BoxData.Lines, Drawing.new("Line", {
+                                    Thickness = 1,
+                                    Color = Color3.fromRGB(120, 168, 231),
+                                    Transparency = 1
+                                }))
+                            end
+                        end
+                        -- Top left
+                        SpdwarePrivate.BoxData.Lines[1].From = Vector2.new(BoxPosition.X - L_T, BoxPosition.Y - L_T)
+                        SpdwarePrivate.BoxData.Lines[1].To = Vector2.new(BoxPosition.X + L_Width, BoxPosition.Y - L_T)
+                        
+                        SpdwarePrivate.BoxData.Lines[2].From = Vector2.new(BoxPosition.X - L_T, BoxPosition.Y - L_T)
+                        SpdwarePrivate.BoxData.Lines[2].To = Vector2.new(BoxPosition.X - L_T, BoxPosition.Y + L_Height)
+                        
+                        -- Top right
+                        SpdwarePrivate.BoxData.Lines[3].From = Vector2.new(BoxPosition.X + BoxWidth - L_Width, BoxPosition.Y - L_T)
+                        SpdwarePrivate.BoxData.Lines[3].To = Vector2.new(BoxPosition.X + BoxWidth + L_T, BoxPosition.Y - L_T)
+                        
+                        SpdwarePrivate.BoxData.Lines[4].From = Vector2.new(BoxPosition.X + BoxWidth + L_T, BoxPosition.Y - L_T)
+                        SpdwarePrivate.BoxData.Lines[4].To = Vector2.new(BoxPosition.X + BoxWidth + L_T, BoxPosition.Y + L_Height)
+                        
+                        -- Bottom left
+                        SpdwarePrivate.BoxData.Lines[5].From = Vector2.new(BoxPosition.X - L_T, BoxPosition.Y + BoxHeight - L_Height)
+                        SpdwarePrivate.BoxData.Lines[5].To = Vector2.new(BoxPosition.X - L_T, BoxPosition.Y + BoxHeight + L_T)
+                        
+                        SpdwarePrivate.BoxData.Lines[6].From = Vector2.new(BoxPosition.X - L_T, BoxPosition.Y + BoxHeight + L_T)
+                        SpdwarePrivate.BoxData.Lines[6].To = Vector2.new(BoxPosition.X + L_Width, BoxPosition.Y + BoxHeight + L_T)
+                        
+                        -- Bottom right
+                        SpdwarePrivate.BoxData.Lines[7].From = Vector2.new(BoxPosition.X + BoxWidth - L_Width, BoxPosition.Y + BoxHeight + L_T)
+                        SpdwarePrivate.BoxData.Lines[7].To = Vector2.new(BoxPosition.X + BoxWidth + L_T, BoxPosition.Y + BoxHeight + L_T)
+                        
+                        SpdwarePrivate.BoxData.Lines[8].From = Vector2.new(BoxPosition.X + BoxWidth + L_T, BoxPosition.Y + BoxHeight + L_T)
+                        SpdwarePrivate.BoxData.Lines[8].To = Vector2.new(BoxPosition.X + BoxWidth + L_T, BoxPosition.Y + BoxHeight - L_Height)
+                        --
+                        for _, Line in ipairs(SpdwarePrivate.BoxData.Lines) do
+                            Line.Visible = getgenv().Script["SILENT_FOVBOXVisible"]
+                            Line.Color = getgenv().Script["SILENT_FOVBOXColor"]
+                            Line.Transparency = getgenv().Script["SILENT_FOVBOXTransparency"]
+                            Line.Thickness = getgenv().Script["SILENT_FOVBOXThickness"]
+                        end
+                    else
+                        for _, Line in ipairs(SpdwarePrivate.BoxData.Lines) do
+                            Line:Remove()
+                        end
+                        SpdwarePrivate.BoxData.Lines = {}
+                        SpdwarePrivate.BoxData.MainBox.Visible = false
+                    end
+                else
+                    for _, Line in ipairs(SpdwarePrivate.BoxData.Lines) do
+                        Line:Remove()
+                    end
+                    SpdwarePrivate.BoxData.Lines = {}
+                    SpdwarePrivate.BoxData.MainBox.Visible = false
+                end
+            else
+                for _, Line in ipairs(SpdwarePrivate.BoxData.Lines) do
+                    Line:Remove()
+                end
+                SpdwarePrivate.BoxData.Lines = {}
+                SpdwarePrivate.BoxData.MainBox.Visible = false
+            end
+        end    
+        --
+        function SpdwarePrivate:IsPriority(Player)
+            for _, Client in ipairs(SpdwarePrivate.Environment.Priority) do
+                if Client == Player then
+                    return true
+                end
+            end
+            return false
+        end
+        --
+        function SpdwarePrivate:AddPriority(Player)
+            if getgenv().Script["RAID_Enabled"] then
+                if not SpdwarePrivate:IsPriority(Player) then
+                    table.insert(SpdwarePrivate.Environment.Priority, Player)
+                end
+            end
+        end
+        --
+        function SpdwarePrivate:RemovePriority(Player)
+            for i, p in ipairs(SpdwarePrivate.Environment.Priority) do
+                if p == Player then
+                    table.remove(SpdwarePrivate.Environment.Priority, i)
+                    return
+                end
+            end
+        end
+        --
+        function SpdwarePrivate:SelectPriority()
+            if not getgenv().Script["RAID_Enabled"] then return end
+        
+            for _, PossiblePriority in pairs(Connected:GetPlayers()) do
+                if PossiblePriority == LocalPlayer then continue end
+        
+                local Character = PossiblePriority.Character
+                local RootPart = Character and Character:FindFirstChild("HumanoidRootPart")
+        
+                if RootPart and Character:IsDescendantOf(Workspace) then
+                    local WorldPos = Camera:WorldToViewportPoint(RootPart.Position)
+                    local Distance = (Vector2.new(LocalMouse.X, LocalMouse.Y) - Vector2.new(WorldPos.X, WorldPos.Y)).Magnitude
+        
+                    if Distance < getgenv().Script["RAID_FOV"] then
+                        if SpdwarePrivate:IsPriority(PossiblePriority) then
+                            SpdwarePrivate:RemovePriority(PossiblePriority)
+                        else
+                            SpdwarePrivate:AddPriority(PossiblePriority)
+                        end
+                        break
+                    end
+                end
+            end
+        end
+        --        
+        function SpdwarePrivate:ClearPriority()
+            SpdwarePrivate.Environment.Priority = {}
+        end
+        --
+        function SpdwarePrivate:GetToolName(Player)
+            local Character = Player.Character
+            local Ignored = {
+                "Wallet",
+                "Phone"
+            };
+            local Tool = Character and Character:FindFirstChildWhichIsA("Tool") or false
+            if Tool then
+                if string.find(Tool.Name, "%[") and string.find(Tool.Name, "%]") and not string.find(Tool.name, Ignored[1]) and not string.find(Tool.Name, Ignored[2]) then
+                    local ToolName = string.split(string.split(Tool.Name, "[")[2], "]")[1]
+                    return ToolName
+                end
+            else
+                return nil
+            end
+        end
+        --
+        function SpdwarePrivate:Deadzone(Player)
+            if Player then
+                local HitBones = getgenv().Script["ASSIST_AimBone"]
+                local CurrentPart = tostring(SpdwarePrivate:GetPart(Player, HitBones))
+                local Position = Player.Character[CurrentPart].Position
+                local World = Camera:WorldToViewportPoint(Position)
+                local Magnitude = (Vector2.new(LocalMouse.X, LocalMouse.Y + 36) - Vector2.new(World.X, World.Y)).Magnitude
+                if Magnitude <= getgenv().Script["DEADZONE_FOVRadius"] then
+                    return false 
+                else
+                    return true
+                end
+            else
+                return true
+            end
+        end
+        --
+        function SpdwarePrivate:GetMultiply(factor)
+            return 0.0
+        end
+        --
+        function SpdwarePrivate:UpdatePing()
+            local Raw = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+            local Split = string.split(Raw, '(')
+            local Ping = tonumber(Split[1])
+            --
+            if getgenv().Script["ASSIST_PingPrediction"] then
+                --
+                if Ping < 200 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["190 - 200"]
+                elseif Ping < 190 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["180 - 190"]
+                elseif Ping < 180 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["170 - 180"]
+                elseif Ping < 170 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["160 - 170"]
+                elseif Ping < 160 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["150 - 160"]
+                elseif Ping < 150 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["140 - 150"]
+                elseif Ping < 140 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["130 - 140"]
+                elseif Ping < 130 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["120 - 130"]
+                elseif Ping < 120 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["110 - 120"]
+                elseif Ping < 110 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["100 - 110"]
+                elseif Ping < 100 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["90 - 100"]
+                elseif Ping < 90 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["80 - 90"]
+                elseif Ping < 80 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["70 - 80"]
+                elseif Ping < 70 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["60 - 70"]
+                elseif Ping < 60 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["50 - 60"]
+                elseif Ping < 50 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["40 - 50"]
+                elseif Ping < 40 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["30 - 40"]
+                elseif Ping < 30 then
+                    getgenv().Script["ASSIST_Prediction"] = getgenv().Script["ASSIST_PingTable"]["20 - 30"]
+                end
+            end
+            --
+            if getgenv().Script["SILENT_PingPrediction"] then
+                if Ping < 200 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["190 - 200"]
+                elseif Ping < 190 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["180 - 190"]
+                elseif Ping < 180 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["170 - 180"]
+                elseif Ping < 170 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["160 - 170"]
+                elseif Ping < 160 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["150 - 160"]
+                elseif Ping < 150 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["140 - 150"]
+                elseif Ping < 140 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["130 - 140"]
+                elseif Ping < 130 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["120 - 130"]
+                elseif Ping < 120 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["110 - 120"]
+                elseif Ping < 110 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["100 - 110"]
+                elseif Ping < 100 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["90 - 100"]
+                elseif Ping < 90 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["80 - 90"]
+                elseif Ping < 80 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["70 - 80"]
+                elseif Ping < 70 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["60 - 70"]
+                elseif Ping < 60 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["50 - 60"]
+                elseif Ping < 50 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["40 - 50"]
+                elseif Ping < 40 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["30 - 40"]
+                elseif Ping < 30 then
+                    getgenv().Script["SILENT_Prediction"] = getgenv().Script["SILENT_PingTable"]["20 - 30"]
+                end
+            end
+            --
+            if getgenv().Script["ASSIST_AutoPrediction"] then
+                local Ping = SpdwarePrivate:GetMultiply(Ping)
+                for i = 1, 3 do
+                    getgenv().Script["ASSIST_Prediction"][i] = Ping
+                end
+            end            
+            --
+            if getgenv().Script["SILENT_AutoPrediction"] then
+                local Ping = SpdwarePrivate:GetMultiply(Ping)
+                for i = 1, 3 do
+                    getgenv().Script["SILENT_Prediction"][i] = Ping
+                end
+            end 
+        end 
+        --
+        function SpdwarePrivate:Disconnect()
+            for Index, Connection in next, SpdwarePrivate.Threads do
+                Connection:Disconnect()
+            end
+            --
+            for Index, Drawing in next, SpdwarePrivate.Environment.PriorityLines do
+                Drawing:Destroy()
+            end
+            --
+            for Index, Drawing in next, SpdwarePrivate.Environment.PriorityTexts do
+                Drawing:Destroy()
+            end
+            --
+            for Index, Drawing in next, SpdwarePrivate.Environment.PrioritySquares do
+                Drawing:Destroy()
+            end
+            --
+            for Index, Drawing in ipairs(SpdwarePrivate.BoxData.Lines) do
+                Drawing:Destroy()
+            end
+            --
+            SilentFOVCircle:Destroy()
+            AimbotFOVCircle:Destroy()
+            DeadzoneFOVCircle:Destroy()
+            SpdwarePrivate.Environment.PlayerLabel:Destroy()
+            getgenv().Script = nil
+        end
+        --
+        function SpdwarePrivate:ResolveVelocity(BasePart)
+            local Suppression = 1
+            local Aggression = 1
+            local Position = BasePart.Position
+            local Tick = tick()
+            --
+            SpdwarePrivate.Resolver.EntityPositions = SpdwarePrivate.Resolver.EntityPositions or {}
+            SpdwarePrivate.Resolver.EntityTimes = SpdwarePrivate.Resolver.EntityTimes or {}
+            --
+            if #SpdwarePrivate.Resolver.EntityPositions >= 3 then
+                local Indexes = #SpdwarePrivate.Resolver.EntityPositions
+                --
+                local TimeData = SpdwarePrivate.Resolver.EntityTimes
+                local PositionEntries = SpdwarePrivate.Resolver.EntityPositions
+                --
+                local IndexOne = PositionEntries[Indexes - 2]
+                local IndexTwo = PositionEntries[Indexes - 1]
+                local LastIndex = PositionEntries[Indexes]
+                local TimeOne = TimeData[Indexes - 2]
+                local TimeTwo = TimeData[Indexes - 1]
+                local LastTime = TimeData[Indexes]
+                --
+                local StartVelocity = (IndexTwo - IndexOne) / (TimeTwo - TimeOne)
+                local EndVelocity = (LastIndex - IndexTwo) / (LastTime - TimeTwo)
+                --
+                local ResolvedVelocity = (Aggression - Suppression) * StartVelocity + Suppression * EndVelocity
+                --
+                BasePart.Velocity = ResolvedVelocity
+            else    
+                BasePart.Velocity = Vector3.zero
+            end
+            --
+            table.insert(SpdwarePrivate.Resolver.EntityPositions, Position)
+            table.insert(SpdwarePrivate.Resolver.EntityTimes, Tick)
+        end
+        --
+        function SpdwarePrivate:SmoothVelocity(Players)
+            if not getgenv().Script["GLOBAL_Resolver"] then return end
+            --
+            local Mode = getgenv().Script["GLOBAL_VelocityMode"]
+            local MaxX = 50
+            local MaxY = -40
+            local LagCompensator = -3
+            --
+            for _, Player in pairs(Players) do
+                local Character = Player.Character
+                if Character then
+                    local RootPart = Character:FindFirstChild("HumanoidRootPart") --Character:FindFirstChild("HumanoidRootPart")
+                    if RootPart then
+                        local Velocity = RootPart.Velocity
+                        local Magnitude = Velocity.magnitude
+                        --
+                        if Mode == "Roblox" then
+                            if Magnitude > MaxX or Magnitude > 80 or Magnitude <= LagCompensator then
+                                SpdwarePrivate:ResolveVelocity(RootPart)
+                            end
+                        elseif Mode == "Custom" then
+                            SpdwarePrivate:ResolveVelocity(RootPart)
+                        end
+                    end
+                end
+            end
+        end
+    end)()
+end
+--
+local HTTPRequestCount = 0;
+--
+getgenv().LuaCache = {};
+--
+getgenv().Luas = {}; do -- Plugin Framework
+    function Luas.CreateContext()
+        local Environment = {} 
+        local Safe2 = getgenv().Script["LUAS_AllowOutput"]
+        local Granted;
+        --
+        function Environment:Log(Table)
+            print(Table.Opening .. Table.Prefix .. Table.Closing .. " " .. Table.Output)
+        end
+        --
+        function Environment:Tween(Object, Properties, Duration, EasingStyle, EasingDirection, RepeatCount, Reverses)
+            local TweenService = game:GetService("TweenService")
+            local TweenInfo = TweenInfo.new(
+                Duration, Enum.EasingStyle[EasingStyle] or 
+                Enum.EasingStyle.Linear, Enum.EasingDirection[EasingDirection] or 
+                Enum.EasingDirection.Out, RepeatCount or 0, 
+                Reverses or false
+            )
+            local Tween = TweenService:Create(Object, TweenInfo, Properties)
+            Tween:Play()
+            return Tween
+        end
+        --        
+        function Environment:Thread(Name, Service, Callback)
+            Name = Name or "NEW_THREAD"
+            local Connect = Service:Connect(Callback)
+            getgenv().LuaCache[Name] = Connect
+            return Connect
+        end
+        --
+        function Environment:IsClient(Player)
+            local Character = SpdwarePrivate:GetCharacter(Player)
+            local Humanoid = (Character and Character:FindFirstChildWhichIsA("Humanoid")) or false
+            local RootPart = (Humanoid and Humanoid.RootPart)
+            --
+            return Character, Humanoid, RootPart
+        end  
+        --
+        function Environment:Clear()
+            for Index, Connection in pairs(getgenv().LuaCache) do
+                if Connection then
+                    Connection:Disconnect()
+                    getgenv().LuaCache[Index] = nil
+                end
+            end
+        end    
+        --
+        function Environment:GetPlayer(Choice)
+            if (Choice) == 0x01 then
+                return SpdwarePrivate.Players[1]
+            end
+            if (Choice) == 0x01 then
+                return SpdwarePrivate.Players[2]
+            end
+        end
+        --
+        function Environment:CreateDrawing(ElementType, Properties)
+            local Drawing = Drawing.new(ElementType)
+            for Property, Value in pairs(Properties) do
+                Drawing[Property] = Value
+            end
+            return Drawing
+        end
+        --
+        function Environment:PlaySound(SoundId, Parent, Volume, Pitch)
+            local Sound = Instance.new("Sound")
+            Sound.SoundId = SoundId
+            Sound.Parent = Parent
+            Sound.Volume = Volume or 1
+            Sound.Pitch = Pitch or 1
+            Sound:Play()
+            return Sound
+        end
+        --
+        function Environment:CreateElement(ElementType, Parent, Properties)
+            local Element = Instance.new(ElementType)
+            for Property, Value in pairs(Properties) do
+                Element[Property] = Value
+            end
+            Element.Parent = Parent
+            return Element
+        end
+        --
+        function Environment:CreateRemoteFunction(Name)
+            local RemoteFunction = Instance.new("RemoteFunction")
+            RemoteFunction.Name = Name
+            RemoteFunction.Parent = game.ReplicatedStorage
+            return RemoteFunction
+        end
+        --
+        function Environment:InvokeRemoteFunction(RemoteFunction, ...)
+            return RemoteFunction:InvokeServer(...)
+        end
+        --
+        function Environment:CreateRemoteEvent(Name, Parent)
+            local RemoteEvent = Instance.new("RemoteEvent")
+            RemoteEvent.Name = Name
+            RemoteEvent.Parent = Parent or game.ReplicatedStorage
+            return RemoteEvent
+        end
+        --
+        function Environment:FireRemoteEvent(RemoteEvent, ...)
+            RemoteEvent:FireServer(...)
+        end
+        --
+        function Environment:ConnectRemoteEvent(RemoteEvent, Function)
+            return RemoteEvent.OnClientEvent:Connect(Function)
+        end
+        --
+        function Environment:RawGet(Table, Key)
+            local metatable = getmetatable(Table)
+            if metatable == nil then
+                return Table[Key]
+            end
+            local rawget = metatable.__rawget or metatable.rawget
+            if rawget then
+                return rawget(Table, Key)
+            else
+                return Table[Key]
+            end
+        end
+        --
+        function Environment:CloseFunction(Func)
+            return pcall(coroutine.close, Func)
+        end
+        --
+        function Environment:FindNestedValue(table, keys)
+            local value = table
+            for _, key in ipairs(keys) do
+                value = value[key]
+                if value == nil then
+                    return nil
+                end
+            end
+            return value
+        end        
+        --
+        function Environment:FindInstancesByClassName(Parent, ClassName)
+            local Instances = {}
+            local function Search(Obj)
+                for _, Child in ipairs(Obj:GetChildren()) do
+                    if Child:IsA(ClassName) then
+                        table.insert(Instances, Child)
+                    end
+                    Search(Child)
+                end
+            end
+            Search(Parent)
+            return Instances
+        end           
+        --        
+        function Environment:ExecuteScript(Script)
+            local Scr, Error = loadstring(Script)
+            if Scr and Granted and getgenv().Script["LUAS_AllowScriptExecution"] then
+                local Success, ErrMsg = pcall(Scr)
+                if not Success then
+                    if Safe2 then
+                        warn("Script execution failed:", ErrMsg)
+                    end
+                end
+            else
+                if Safe2 then
+                    warn("Script compilation failed:", Error)
+                end
+            end
+        end              
+        --
+        function Environment:RequestAccess()
+            if not getgenv().Script["LUAS_SafeMode"] then
+                Granted = true
+                return true
+            else
+                Granted = false
+                return false
+            end
+        end        
+        --
+        function Environment:RandomString(Length, Charset)
+            Length = Length or 10
+            Charset = Charset or "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+            local String = ""
+            for _ = 1, Length do
+                local RandIndex = math.random(1, #Charset)
+                String = String .. Charset:sub(RandIndex, RandIndex)
+            end
+            return String
+        end
+        --
+        function Environment:ShuffleTable(Table)
+            local Random = Random.new()
+            for i = #Table, 2, -1 do
+                local j = Random:NextInteger(1, i)
+                Table[i], Table[j] = Table[j], Table[i]
+            end
+        end
+        --
+        function Environment:GenerateUUID()
+            local Template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+            return Template:gsub("[xy]", function(c)
+                local v = (c == "x") and math.random(0, 15) or math.random(8, 11)
+                return string.format("%x", v)
+            end)
+        end
+        --
+        function Environment:CreateGUID()
+            local Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            return Template:gsub("x", function(c)
+                local v = math.random(0, 15)
+                return string.format("%x", v)
+            end)
+        end        
+        --
+        function Environment:CalculateDistance(Point1, Point2)
+            return (Point1 - Point2).magnitude
+        end        
+        --
+        function Environment:SerializeTable(Table)
+            return game:GetService("HttpService"):JSONEncode(Table)
+        end
+        --
+        function Environment:DeserializeJSON(JSON)
+            return game:GetService("HttpService"):JSONDecode(JSON)
+        end
+        --
+        function Environment:CalculateAverage(Table)
+            local Total = 0
+            for _, Value in ipairs(Table) do
+                Total = Total + Value
+            end
+            return Total / #Table
+        end
+        --
+        function Environment:GenerateRandomVector3(Min, Max)
+            return Vector3.new(
+                math.random(Min.X, Max.X),
+                math.random(Min.Y, Max.Y),
+                math.random(Min.Z, Max.Z)
+            )
+        end
+        --
+        function Environment:NormalizeVector3(Vector)
+            return Vector.magnitude == 0 and Vector or Vector / Vector.magnitude
+        end
+        --
+        function Environment:BinarySearch(Table, Value)
+            local Start, End = 1, #Table
+            while Start <= End do
+                local Mid = math.floor((Start + End) / 2)
+                if Table[Mid] == Value then
+                    return Mid
+                elseif Table[Mid] < Value then
+                    Start = Mid + 1
+                else
+                    End = Mid - 1
+                end
+            end
+            return nil
+        end        
+        --
+        function Environment:RotateVector3(Vector, Axis, Angle)
+            local C = math.cos(Angle)
+            local S = math.sin(Angle)
+            return Vector * C + (Axis:Cross(Vector)) * S + Axis * (Axis:Dot(Vector)) * (1 - C)
+        end
+        --
+        function Environment:CapitalizeFirstLetter(String)
+            return string.upper(string.sub(String, 1, 1)) .. string.sub(String, 2)
+        end
+        --         
+        function Environment:TableLength(Table)
+            local Count = 0
+            for _ in pairs(Table) do
+                Count = Count + 1
+            end
+            return Count
+        end             
+        --
+        function Environment:MergeTables(...)
+            local Merged = {}
+            for _, Table in ipairs{...} do
+                for Key, Value in pairs(Table) do
+                    Merged[Key] = Value
+                end
+            end
+            return Merged
+        end          
+        --
+        function Environment:DumpInstance(Instance)
+            local function DumpInstanceRecursively(Inst, Indent)
+                local Info = ""
+                Info = Info .. string.rep(" ", Indent) .. Inst.Name .. " (" .. Inst.ClassName .. ") \n"
+                for _, Prop in pairs(Inst:GetProperties()) do
+                    Info = Info .. string.rep(" ", Indent + 2) .. Prop .. " = " .. tostring(Inst[Prop]) .. "\n"
+                end
+                for _, Child in pairs(Inst:GetChildren()) do
+                    Info = Info .. DumpInstanceRecursively(Child, Indent + 2)
+                end
+                return Info
+            end
+            return DumpInstanceRecursively(Instance, 0)
+        end
+        --
+        function Environment:MonitorInstance(Instance, Property)
+            Instance:GetPropertyChangedSignal(Property):Connect(function()
+                if Safe2 then
+                    print(Property .. " changed to: " .. tostring(Instance[Property]))
+                end
+            end)
+        end        
+        --
+        function Environment:MonitorRemoteFunctionCalls(Function)
+            Function.OnServerInvoke = function(Player, ...)
+                if Safe2 then
+                    print("Received RemoteFunction call:", Function.Name)
+                    print("Player:", Player.Name)
+                    print("Input arguments:", ...)
+                    local Result = Function(Player, ...)
+                    print("Output result:", Result)
+                end
+                local Result = Function(Player, ...)
+                return Result
+            end
+        end
+        --
+        function Environment:InjectCode(Table, Instance, Code)
+            Table = Table or {}
+            setreadonly(Table, false)
+            Instance.Source = Instance.Source .. "\n" .. Code
+            setreadonly(Table, true)
+        end     
+        --  
+        function Environment:ListScriptProperties(Script)
+            local Properties = {}
+        
+            local mt = getmetatable(Script)
+            if mt then
+                local index = mt.__index
+                if index then
+                    for Key, Value in pairs(index) do
+                        table.insert(Properties, Key)
+                    end
+                else
+                    if Safe2 then print("Metatable doesn't have an __index field") end
+                end
+            else
+                if Safe2 then print("Script object doesn't have a metatable") end
+            end
+        
+            return Properties
+        end        
+        --
+        function Environment:InterceptRemoteEvent(EventName, EventPath, Handler)
+            local Event = EventPath:WaitForChild(EventName) or game:GetService("ReplicatedStorage"):WaitForChild(EventName)
+            Event.OnServerEvent:Connect(Handler)
+        end
+        --
+        function Environment:ObfuscateString(str)
+            local obfuscated = ""
+            for i = 1, #str do
+                local charCode = string.byte(str, i)
+                -- shift
+                charCode = charCode + 5
+                obfuscated = obfuscated .. string.char(charCode)
+            end
+            return obfuscated
+        end
+        --
+        function Environment:DeobfuscateString(obfuscatedStr)
+            local original = ""
+            for i = 1, #obfuscatedStr do
+                local charCode = string.byte(obfuscatedStr, i)
+                -- reverse shift
+                charCode = charCode - 5
+                original = original .. string.char(charCode)
+            end
+            return original
+        end
+        -- 
+        function Environment:GetScriptFromThread(Thread)
+            return debug.info(Thread, 1, "s")
+        end
+        --            
+        function Environment:GetFunctionFromThread(Thread)
+            return debug.info(Thread, 1, "f")
+        end
+        --
+        function Environment:GetUReg()
+            return getreg()
+        end
+        --
+        function Environment:HTTPRequest(Params)
+            if (Granted) then
+                local Max = getgenv().Script["LUAS_LimitHTTPRequests"] == false and math.huge or getgenv().Script["LUAS_LimitHTTPRequests"][2]
+                local HttpService = http and http.request or http_request or request or httprequest
+
+                if HTTPRequestCount >= Max then 
+                    if Safe2 then
+                        warn("HTTPRequest: Max amount of requests reached.")
+                    end
+                    return
+                end
+                
+                if not Params.Url or not Params.Method then
+                    if Safe2 then
+                        warn("HTTPRequest: Missing required parameters (Url or Method)")
+                    end
+                    return
+                end
+            
+                local method = Params.Method:upper()
+            
+                local headers = Params.Headers or {}
+            
+                local success, response = pcall(function()
+                    return HttpService({
+                        Url = Params.Url,
+                        Method = method,
+                        Headers = headers
+                    })
+                end)
+                
+                HTTPRequestCount = HTTPRequestCount + 1
+            
+                if success and response.StatusCode == 200 then
+                    return response
+                else
+                    if Safe2 then
+                        warn("HTTPRequest failed with status code:", response and response.StatusCode)
+                    end
+                    return
+                end
+            else
+                return
+            end
+        end
+        --
+        return Environment
+    end
+end
+--
+do --// Visuals
+    local function Clean(table)
+        for player, element in pairs(table) do
+            if not SpdwarePrivate:IsPriority(player) then
+                element:Remove()
+                table[player] = nil
+            end
+        end
+    end
+    --
+    function SpdwarePrivate:DrawPriority()
+        local Script = getgenv().Script
+        local RAID_Enabled = Script["RAID_Enabled"]
+        local RAID_Visuals = Script["RAID_Visuals"]
+        local Environment = SpdwarePrivate.Environment
+        local Priority = Environment.Priority
+        local CanDraw = Environment.CanDraw
+        --
+        local PlayerLabel = Environment.PlayerLabel
+        --
+        if RAID_Enabled then
+            if RAID_Visuals["List"] then
+                PlayerLabel.Visible = CanDraw
+                PlayerLabel.Text = "Priority List:\n\n"
+                PlayerLabel.Position = Vector2.new(100, 100)
+                PlayerLabel.Size = 13
+                PlayerLabel.Font = Drawing.Fonts.Plex
+                PlayerLabel.Color = Color3.fromRGB(255, 255, 255)
+                PlayerLabel.Center = false
+                PlayerLabel.Outline = true
+            else
+                PlayerLabel.Text = ""
+            end
+            --
+            Clean(Environment.PriorityLines)
+            Clean(Environment.PriorityTexts)
+            Clean(Environment.PrioritySquares)
+            --
+            for _, Player in ipairs(Priority) do
+                local RootPart = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
+                if not RootPart then
+                    return
+                end
+                local Position, Visible = Camera:WorldToViewportPoint(RootPart.Position)
+                local CharacterSize = (Camera:WorldToViewportPoint(RootPart.Position - Vector3.new(0, 3, 0)).Y -
+                                       Camera:WorldToViewportPoint(RootPart.Position + Vector3.new(0, 2.6, 0)).Y) / 2
+    
+                --
+                if RAID_Visuals["List"] then
+                    PlayerLabel.Text = PlayerLabel.Text .. Player.DisplayName .. " (" .. Player.Name .. ")\n"
+                end
+                --
+                if RAID_Visuals["Names"] then
+                    local Text = Environment.PriorityTexts[Player]
+                    if not Text then
+                        Text = Drawing.new("Text")
+                        Text.Font = Drawing.Fonts.Plex
+                        Text.Size = Script["RAID_NAMESize"]
+                        Text.Outline = Script["RAID_NAMEOutline"]
+                        Text.Color = Script["RAID_NAMEColor"]
+                        Text.Center = true
+                        Environment.PriorityTexts[Player] = Text
+                    end
+                    local HumanoidViewpoint = Camera:WorldToViewportPoint(RootPart.Position)
+                    local CharacterSize = (Camera:WorldToViewportPoint(RootPart.Position - Vector3.new(0, 3, 0)).Y - Camera:WorldToViewportPoint(RootPart.Position + Vector3.new(0, 2.6, 0)).Y) / 2
+                    local SizeVector = Vector2.new(math.floor(CharacterSize * 1.8), math.floor(CharacterSize * 1.9))
+                    local FloorVector = Vector2.new(math.floor(HumanoidViewpoint.X - CharacterSize * 1.8 / 2), math.floor(HumanoidViewpoint.Y - CharacterSize * 1.6 / 2))
+    
+                    Text.Visible = CanDraw and Visible
+                    Text.Text = Player.DisplayName .. " (" .. Player.Name .. ")"
+                    Text.Position = Vector2.new(SizeVector.X / 2 + FloorVector.X, FloorVector.Y - 16) + Vector2.new(0, -35)
+                end
+                --
+                if RAID_Visuals["Lines"] then
+                    end
+                    local Line = Environment.PriorityLines[Player]
+                    if not Line then
+                        Line = Drawing.new("Line")
+                        Environment.PriorityLines[Player] = Li
+                    Line.Thickness = Script["RAID_LINEThickness"]
+                    Line.Transparency = Script["RAID_LINETransparency"]
+                    Line.Visible = CanDraw and Visible
+                    Line.From = Script["RAID_LINEFrom"] and Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y - 135) or UserInputService:GetMouseLocation()
+                    Line.To = Vector2.new(Position.X, Position.Y)
+                    Line.Color = Script["RAID_LINEColor"]
+                end
+                --
+                if RAID_Visuals["Box"] then
+                    local Square = Environment.PrioritySquares[Player]
+                    if not Square then
+                        Square = Drawing.new("Square")
+                        Square.Thickness = Script["RAID_BOXThickness"]
+                        Square.Color = Script["RAID_BOXColor"]
+                        Environment.PrioritySquares[Player] = Square
+                    end
+                    local BoxWidth = math.floor(CharacterSize * 1.3)
+                    local BoxHeight = math.floor(CharacterSize * 1.9)
+                    Square.Visible = CanDraw and Visible
+                    Square.Size = Vector2.new(BoxWidth, BoxHeight)
+                    Square.Position = Vector2.new(Position.X - BoxWidth / 2, Position.Y - BoxHeight / 2)
+                end
+    
+            end
+        else
+            PlayerLabel.Text = ""
+            Clean(Environment.PriorityLines)
+            Clean(Environment.PriorityTexts)
+            Clean(Environment.PrioritySquares)
+            Environment.PriorityLines = {}
+            Environment.PriorityTexts = {}
+            Environment.PrioritySquares = {}
+            Environment.Priority = {}
+        end
+    end
+    --
+    function SpdwarePrivate:RangeFOV()
+        if SpdwarePrivate:GetToolName(LocalPlayer) == nil then return end;
+        --
+        if (getgenv().Script["RANGE_Enabled"]) and (SpdwarePrivate.Players[2] ~= nil) then
+            local CurrentTool = SpdwarePrivate:GetToolName(LocalPlayer)
+            local Object, Humanoid, RootPart = SpdwarePrivate:IsClient(SpdwarePrivate.Players[2]);
+            local Object2, Humanoid2, RootPart2 = SpdwarePrivate:IsClient(LocalPlayer);
+            --
+            if Object and Object2 and RootPart and RootPart2 then
+                local Magnitude = (RootPart.Position - RootPart2.Position).Magnitude
+                --
+                if Magnitude < getgenv().Script["RANGE_DISTANCEShort"] then
+                    if CurrentTool == "Revolver" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVRevolver"][1]
+                    elseif CurrentTool == "Double-Barrel SG" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVDoubleBarrel"][1]
+                    elseif CurrentTool == "TacticalShotgun" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVTacticalShotgun"][1]
+                    elseif CurrentTool == "Shotgun" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVShotgun"][1]
+                    else
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVOtherGun"][1]
+                    end
+                elseif Magnitude < getgenv().Script["RANGE_DISTANCEMedium"] then
+                    if CurrentTool == "Revolver" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVRevolver"][2]
+                    elseif CurrentTool == "Double-Barrel SG" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVDoubleBarrel"][2]
+                    elseif CurrentTool == "TacticalShotgun" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVTacticalShotgun"][2]
+                    elseif CurrentTool == "Shotgun" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVShotgun"][2]
+                    else
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVOtherGun"][2]
+                    end
+                elseif Magnitude < getgenv().Script["RANGE_DISTANCELong"] then
+                    if CurrentTool == "Revolver" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVRevolver"][3]
+                    elseif CurrentTool == "Double-Barrel SG" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVDoubleBarrel"][3]
+                    elseif CurrentTool == "TacticalShotgun" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVTacticalShotgun"][3]
+                    elseif CurrentTool == "Shotgun" then
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVShotgun"][3]
+                    else
+                        SilentFOVCircle.Radius = getgenv().Script["RANGE_GUNFOVOtherGun"][3]
+                    end
+                end
+            end
+        end 
+    end
+    --
+    function SpdwarePrivate:UpdateVisualDot()
+        if not getgenv().Script["SILENT_VisualizeTarget"] then return end
+        --
+        if (SpdwarePrivate.Players[2] and SpdwarePrivate.Players[2].Character) then   
+            local Object, Humanoid, RootPart = SpdwarePrivate:IsClient(SpdwarePrivate.Players[2])
+            if (Object and Humanoid and RootPart) then
+                local RootPosition = Camera:WorldToViewportPoint(SpdwarePrivate:GetHitPosition({Type = "Silent", Object = SpdwarePrivate.Players[2]}))
+                VisualCircle.Size = Vector2.new(getgenv().Script["SILENT_VisualizeSize"][1], getgenv().Script["SILENT_VisualizeSize"][2])
+                VisualCircle.Visible = true
+                VisualCircle.DataURL = "rbxassetid://17650178917"
+                VisualCircle.Transparency = 1
+                VisualCircle.Position = Vector2.new(RootPosition.X, RootPosition.Y)
+                VisualCircle.Color = getgenv().Script["SILENT_VisualizeColor"]
+                --
+            else
+                VisualCircle.Visible = false
+            end
+        else
+            VisualCircle.Visible = false
+        end
+    end
+    --
+    function SpdwarePrivate:UpdateDrawings()
+        SpdwarePrivate:DrawPriority()
+        SpdwarePrivate:UpdateBox()
+        SpdwarePrivate:UpdateVisualDot()
+        SpdwarePrivate:RangeFOV()
+        --
+        SilentFOVCircle.Visible = SpdwarePrivate.Bools.CanFOVsDraw and getgenv().Script["SILENT_FOVVisible"]
+        --
+        if getgenv().Script["RANGE_Enabled"] == false then
+            SilentFOVCircle.Radius = getgenv().Script["SILENT_FOVRadius"]
+        end
+        --
+        --
+        SilentFOVCircle.Filled = getgenv().Script["SILENT_FOVFilled"]
+        SilentFOVCircle.Transparency = getgenv().Script["SILENT_FOVTransparency"]
+        SilentFOVCircle.Thickness = getgenv().Script["SILENT_FOVThickness"]
+        SilentFOVCircle.Color = getgenv().Script["SILENT_FOVColor"]
+        --
+        AimbotFOVCircle.Visible = SpdwarePrivate.Bools.CanFOVsDraw and getgenv().Script["ASSIST_FOVVisible"]
+        AimbotFOVCircle.Radius = getgenv().Script["ASSIST_FOVRadius"]
+        AimbotFOVCircle.Filled = getgenv().Script["ASSIST_FOVFilled"]
+        AimbotFOVCircle.Transparency = getgenv().Script["ASSIST_FOVTransparency"]
+        AimbotFOVCircle.Thickness = getgenv().Script["ASSIST_FOVThickness"]
+        AimbotFOVCircle.Color = getgenv().Script["ASSIST_FOVColor"]
+        --
+        DeadzoneFOVCircle.Visible = SpdwarePrivate.Bools.CanFOVsDraw and getgenv().Script["DEADZONE_FOVVisible"]
+        DeadzoneFOVCircle.Radius = getgenv().Script["DEADZONE_FOVRadius"]
+        DeadzoneFOVCircle.Filled = getgenv().Script["DEADZONE_FOVFilled"]
+        DeadzoneFOVCircle.Transparency = getgenv().Script["DEADZONE_FOVTransparency"]
+        DeadzoneFOVCircle.Thickness = getgenv().Script["DEADZONE_FOVThickness"]
+        DeadzoneFOVCircle.Color = getgenv().Script["DEADZONE_FOVColor"]
+        --
+        AimbotFOVCircle.Position = Vector2.new(LocalMouse.X, LocalMouse.Y) + Vector2.new(0, XYInset.Y)  
+        DeadzoneFOVCircle.Position = Vector2.new(LocalMouse.X, LocalMouse.Y) + Vector2.new(0, XYInset.Y)  
+        SilentFOVCircle.Position = Vector2.new(LocalMouse.X, LocalMouse.Y) + Vector2.new(0, XYInset.Y)  
+        --
+    end
+end
+--
+do --[[ Main ]]
+    do -- [[ Combat ]]
+        function SpdwarePrivate:AimAssistActivation()
+            --
+            if not getgenv().Script["ASSIST_Enabled"] then 
+                return 
+            end
+            --
+            if not getgenv().Script["ASSIST_Sticky"] then
+                SpdwarePrivate.Players[1] = SpdwarePrivate:ChoosePriority("Aimbot")
+            end
+            --
+            local GameIndex = SpdwarePrivate:GetContext()[game.GameId]
+            if not GameIndex then return end;
+            --
+            local Priority = SpdwarePrivate.Players[1]
+            local Numbers = getgenv().Script["ASSIST_Prediction"]
+            local Predict = getgenv().Script["ASSIST_Predict"]
+            --
+            local HitBones = getgenv().Script["ASSIST_AimBone"]
+            local WallCheck = getgenv().Script["ASSISTCHECK_Visible"]
+            local KOCheck = getgenv().Script["ASSISTCHECK_Knocked"]
+            local GrabCheck = getgenv().Script["ASSISTCHECK_Grabbed"]
+            local ForceFieldCheck = getgenv().Script["ASSISTCHECK_ForceField"]
+            local TypingCheck = getgenv().Script["ASSISTCHECK_Typing"]
+            local ToolCheck = getgenv().Script["ASSISTCHECK_Tool"]
+            local FriendCheck = getgenv().Script["ASSISTCHECK_Friend"]
+            local CrewCheck = getgenv().Script["ASSISTCHECK_Crew"]
+            local Deadzone = getgenv().Script["ASSIST_Deadzone"]
+            --
+            if Priority and Priority.Character then
+                local Object, Humanoid, RootPart = SpdwarePrivate:IsClient(Priority)
+                if (Object and Humanoid and RootPart) then
+                    local A = true
+                    if A then
+                        if (WallCheck and not (SpdwarePrivate:ObjectCheck(RootPart, SpdwarePrivate:GetView("Camera"), {SpdwarePrivate:GetCharacter(LocalPlayer)}))) then return end
+                        if (KOCheck and not (GameIndex.Knocked(Priority))) then return end;
+                        if (GrabCheck and not (GameIndex.Grabbed(Priority))) then return end;
+                        if (ForceFieldCheck and (Object:FindFirstChildOfClass("ForceField"))) then return end;
+                        if (TypingCheck and (UserInputService:GetFocusedTextBox())) then return end;
+                        if (ToolCheck and not (LocalPlayer.Character:FindFirstChildWhichIsA("Tool"))) then return end;
+                        if (FriendCheck and not (SpdwarePrivate:IsFriendly(Priority))) then return end;
+                        if (Deadzone and not (SpdwarePrivate:Deadzone(Priority))) then return end;
+                        --
+                        local PlayerState = Humanoid:GetState()
+                        --
+                        local Smoothness
+                        local Stickiness
+                        --
+                        if (SpdwarePrivate:IsJumped(PlayerState, Priority)) then
+                            Smoothness = getgenv().Script["ASSIST_SmoothingY"] / 1000
+                            Stickiness = getgenv().Script["ASSIST_StickynessY"]
+                        else
+                            Smoothness = getgenv().Script["ASSIST_SmoothingX"] / 1000
+                            Stickiness = getgenv().Script["ASSIST_StickynessX"]
+                        end
+                        --
+                        local AntiFloor = getgenv().Script["ASSIST_AntiGroundShots"]
+                        local PredictionFactor = 1 / math.max(Stickiness, 0.01) -- max it so it doesnt divide by 0 since for some reason that wont let u lock on
+                        --
+                        local Prediction = Predict and Vector3.new(Numbers[1], AntiFloor or Numbers[2], Numbers[3]) or Vector3.new(0, 0, 0)
+                        local RandomizeNums = getgenv().Script["ASSIST_Randomization"]
+                        local Randomize = getgenv().Script["ASSIST_Randomize"] and Vector3.new(
+                            math.random(-RandomizeNums[1], RandomizeNums[1]),
+                            math.random(-RandomizeNums[2], RandomizeNums[2]),
+                            math.random(-RandomizeNums[3], RandomizeNums[3])
+                        ) * 0.1 or Vector3.new(0, 0, 0)
+                        --
+                        local Hit = SpdwarePrivate:GetPart(Priority, HitBones)
+                        local Position = Hit.Position + (Hit.Velocity * Prediction) + Randomize
+                        local ControlOne = CFrame.new(Camera.CFrame.p, Position)
+                        local ControlTwo = Camera.CFrame:Lerp(ControlOne, Smoothness)
+                        --
+                        if (getgenv().Script["ASSIST_Type"] == "Camera") then
+                            Camera.CFrame = ControlTwo
+                        elseif (getgenv().Script["ASSIST_Type"] == "Mouse") then
+                        
+                        end
+                    end
+                end
+            end
+        end
+        --
+        function SpdwarePrivate:GetHitPosition(Table)
+            if (Table.Type == "Silent") then
+                local Base = getgenv().Script["SILENT_AimType"]
+                local Formula = "*"
+                local AntiFloor = getgenv().Script["SILENT_AntiGroundShots"] and 0.011 
+                local Prediction = getgenv().Script["SILENT_Prediction"]
+                local Offset = Vector3.new(Prediction[1], AntiFloor or Prediction[2], Prediction[3])
+                --
+                local Bone = tostring(SpdwarePrivate:GetPart(Table.Object, getgenv().Script["SILENT_AimBone"]))
+                --
+                local PlayerVelocity = Table.Object.Character[Bone].Velocity
+                local Default = SpdwarePrivate:CalculateDirection(Table.Object.Character[Bone].CFrame, PlayerVelocity, Offset, Formula)
+                local ClosestPart = tostring(SpdwarePrivate:GetNearestBone(Table.Object.Character))
+                local ClosestPoint = SpdwarePrivate:CalculateDirection(SpdwarePrivate:GetNearestPoint(Table.Object.Character[ClosestPart], getgenv().Script["SILENT_NearestType"]), PlayerVelocity, Offset, Formula)
+                local ClosestPart2 = SpdwarePrivate:CalculateDirection(SpdwarePrivate:GetNearestBone(Table.Object.Character).CFrame, PlayerVelocity, Offset, Formula)
+                local Hit = 
+                Base == "Nearest Point" and Vector3.new(ClosestPoint.X, ClosestPoint.Y, ClosestPoint.Z) or
+                Base == "Nearest Part" and Vector3.new(ClosestPart2.X, ClosestPart2.Y, ClosestPart2.Z) or
+                Vector3.new(Default.X, Default.Y, Default.Z)
+                --
+                if (game.GameId == 3634139746) then
+                    Hit = Hit + Vector3.new(25, 100, 25)
+                end
+                --
+                return Hit
+            end
+        end        
+        --
+        function SpdwarePrivate:ToolConnection()
+            if not getgenv().Script["SILENT_Enabled"] then return end
+            --
+            local GameIndex = SpdwarePrivate:GetContext()[game.GameId]
+            if not GameIndex then return end;
+            --
+            local CurrentMode = getgenv().Script["SILENT_Mode"]
+            --
+            if getgenv().Script["SILENT_Sticky"] then
+                if CurrentMode == "Target" and getgenv().Script["SILENT_Synchronize"] then
+                    SpdwarePrivate.Players[2] = SpdwarePrivate.Players[1]
+                elseif CurrentMode == "FOV" then
+                    SpdwarePrivate.Players[2] = SpdwarePrivate:ChoosePriority("Silent")
+                end
+            end
+            --
+            local WallCheck = getgenv().Script["SILENTCHECK_Visible"]
+            local KOCheck = getgenv().Script["SILENTCHECK_Knocked"]
+            local GrabCheck = getgenv().Script["SILENTCHECK_Grabbed"]
+            local ForceFieldCheck = getgenv().Script["SILENTCHECK_ForceField"]
+            local FriendCheck = getgenv().Script["SILENTCHECK_Friend"]
+            local HitChanceCheck = getgenv().Script["SILENT_UseHitChance"]
+            --
+            local PlayerSilent = SpdwarePrivate.Players[2]
+            --
+            if PlayerSilent and PlayerSilent.Character then
+                local Object, Humanoid, RootPart = SpdwarePrivate:IsClient(PlayerSilent)
+                if (WallCheck and not (SpdwarePrivate:ObjectCheck(RootPart, SpdwarePrivate:GetView("Camera"), {SpdwarePrivate:GetCharacter(LocalPlayer)}))) then return end
+                if (KOCheck and not (GameIndex.Knocked(PlayerSilent))) then return end
+                if (GrabCheck and not (GameIndex.Grabbed(PlayerSilent))) then return end
+                if (ForceFieldCheck and (Object:FindFirstChildOfClass("ForceField"))) then return end
+                if (FriendCheck and not (SpdwarePrivate:IsFriendly(PlayerSilent))) then return end
+                if (HitChanceCheck and not (SpdwarePrivate:GetHitChance(getgenv().Script["SILENT_HitChance"]))) then return end
+                --
+                local Screen, Visible = Camera:WorldToScreenPoint(PlayerSilent.Character[tostring(SpdwarePrivate:GetNearestBone(PlayerSilent.Character))].Position)
+                local DistanceX = math.abs(Screen.X - LocalMouse.X)
+                local DistanceY = math.abs(Screen.Y - LocalMouse.Y)
+                local Box = SpdwarePrivate.BoxData.MainBox.Size
+                local RadiusX = getgenv().Script["SILENT_FOVType"] == "BoxFOV" and Box.X / 2 or SilentFOVCircle.Radius
+                local RadiusY = getgenv().Script["SILENT_FOVType"] == "BoxFOV" and Box.Y / 2 or SilentFOVCircle.Radius
+                local Base = getgenv().Script["SILENT_AimType"]
+                local Formula = "*"
+                local AntiFloor = getgenv().Script["SILENT_AntiGroundShots"] and 0.011 
+                local Prediction = getgenv().Script["SILENT_Prediction"]
+                local Offset = Vector3.new(Prediction[1], AntiFloor or Prediction[2], Prediction[3])
+                --
+                local Bone = tostring(SpdwarePrivate:GetPart(PlayerSilent, getgenv().Script["SILENT_AimBone"]))
+                --
+                local PlayerVelocity = PlayerSilent.Character[Bone].Velocity
+                local Default = SpdwarePrivate:CalculateDirection(PlayerSilent.Character[Bone].CFrame, PlayerVelocity, Offset, Formula)
+                local ClosestPart = tostring(SpdwarePrivate:GetNearestBone(PlayerSilent.Character))
+                local ClosestPoint = SpdwarePrivate:CalculateDirection(SpdwarePrivate:GetNearestPoint(PlayerSilent.Character[ClosestPart], getgenv().Script["SILENT_NearestType"]), PlayerVelocity, Offset, Formula)
+                local ClosestPart2 = SpdwarePrivate:CalculateDirection(SpdwarePrivate:GetNearestBone(PlayerSilent.Character).CFrame, PlayerVelocity, Offset, Formula)
+                local Hit = 
+                Base == "Nearest Point" and Vector3.new(ClosestPoint.X, ClosestPoint.Y, ClosestPoint.Z) or
+                Base == "Nearest Part" and Vector3.new(ClosestPart2.X, ClosestPart2.Y, ClosestPart2.Z) or
+                Vector3.new(Default.X, Default.Y, Default.Z)   
+                --
+                if (Math:XYRadius(RadiusX, DistanceX, RadiusY, DistanceY) and Visible) then
+                    local Path = game.ReplicatedStorage:FindFirstChild(GameIndex.Remote)
+                    local CustomArguments = {
+                        [1] = GameIndex.Argument,
+                        [2] = Hit,
+                        [3] = GameIndex.ExtraArgs
+                    }
+                    --
+                    if (game.GameId == 5611456810 or game.GameId == 5807321331) then    
+                        CustomArguments[2] = {
+                            ["Camera"] = Endpoint,
+                            ["MousePos"] = Endpoint
+                        }
+                    end
+                    --
+                    Path:FireServer(unpack(CustomArguments))
+                end
+            end
+        end
+        --
+        if not (getgenv().Script["UNIVERSAL_Enabled"]) then
+            if (SpdwarePrivate:GetContext()[game.GameId].HoodGame) then
+                local Connections = {}
+                for i, v in pairs(LocalPlayer.Backpack:GetChildren()) do
+                    if v:IsA("Tool") and not Connections[v] then
+                        Connections[v] = v.Activated:Connect(SpdwarePrivate.ToolConnection)
+                    end
+                end
+                for i, v in pairs(LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("Tool") and not Connections[v] then
+                        Connections[v] = v.Activated:Connect(SpdwarePrivate.ToolConnection)
+                    end
+                end
+                LocalPlayer.Character.ChildAdded:connect(function(v)
+                    if v:IsA("Tool") and not Connections[v] then
+                        Connections[v] = v.Activated:Connect(SpdwarePrivate.ToolConnection)
+                    end
+                end)
+                LocalPlayer.CharacterAdded:connect(function(v)
+                    for i = 1, # Connections, 1 do
+                        Connections[i]:Disconnect()
+                        Connections[i] = nil
+                    end
+                v.ChildAdded:connect(function(v)
+                    if v:IsA("Tool") and not Connections[v] then
+                        Connections[v] = v.Activated:Connect(SpdwarePrivate.ToolConnection)
+                        end
+                    end)
+                end)
+            end
+        end
+    end
+end
+--
+local PressTick = tick();
+--  
+SpdwarePrivate:Thread("Keybind Thread", LocalMouse.KeyDown, function(Key)
+    local Keybind = getgenv().Script["ASSIST_Keybind"]:lower()
+    local RaidHide = getgenv().Script["RAID_HideVisuals"]:lower()
+    local RaidSelect = getgenv().Script["RAID_SelectPlayer"]:lower()
+    local RaidClear = getgenv().Script["RAID_ClearPlayers"]:lower()
+    local PanicEnabled = getgenv().Script["SAFETY_Panic"]
+    local PanicKey = getgenv().Script["SAFETY_PanicBind"]:lower()
+    local HideVisualEnabled = getgenv().Script["SAFETY_HideVisual"]
+    local HideVisualKey = getgenv().Script["SAFETY_HideVisualBind"]:lower()
+    local PingSpikeEnabled = getgenv().Script["PINGSPIKE_Enabled"]
+    local PingSpikeKey = getgenv().Script["PINGSPIKE_Keybind"]:lower()
+    local DesyncEnabled = getgenv().Script["DESYNC_Enabled"]
+    local DesyncKey = getgenv().Script["DESYNC_Keybind"]:lower()
+    local InventorySortEnabled = getgenv().Script["INVENTORY_Sort"] 
+    local InventorySortKey = getgenv().Script["INVENTORY_SortKeybind"]:lower()
+    local ServerHopEnabled = getgenv().Script["SERVERHOP_Enabled"]
+    local ServerHopKey = getgenv().Script["SERVERHOP_Keybind"]:lower()
+    local RejoinEnabled = getgenv().Script["SERVERREJOIN_Enabled"] 
+    local RejoinKey = getgenv().Script["SERVERREJOIN_Keybind"]:lower()
+    local SilentTargetEnabled = getgenv().Script["SILENT_Mode"] == "Target"
+    local SilentTargetKey = getgenv().Script["SILENT_TargetBind"]:lower()
+    --
+    if UserInputService:GetFocusedTextBox() then return end;
+    --
+    if (Key == Keybind) then
+        SpdwarePrivate.Bools.State = not SpdwarePrivate.Bools.State
+        if SpdwarePrivate.Bools.State then
+            SpdwarePrivate.Players[1] = SpdwarePrivate:ChoosePriority("Aimbot")
+        else
+            if SpdwarePrivate.Players[1] ~= nil then
+                SpdwarePrivate.Players[1] = nil
+            end
+        end
+    end
+    --
+    if (SilentTargetEnabled and Key == SilentTargetKey) then
+        SpdwarePrivate.Bools.State2 = not SpdwarePrivate.Bools.State2
+        if SpdwarePrivate.Bools.State2 then
+            SpdwarePrivate.Players[2] = SpdwarePrivate:ChoosePriority("Silent")
+        else
+            if SpdwarePrivate.Players[2] ~= nil then
+                SpdwarePrivate.Players[2] = nil
+            end
+        end
+    end
+    --
+    if (Key == RaidHide) then
+        SpdwarePrivate.Environment.CanDraw = not SpdwarePrivate.Environment.CanDraw 
+    end
+    --
+    if (Key == RaidSelect) then
+        SpdwarePrivate:SelectPriority()
+    end
+    --
+    if (Key == RaidClear) then
+        SpdwarePrivate:ClearPriority()
+    end
+    --
+    if (InventorySortEnabled and Key == InventorySortKey) then
+       --// this is an older source, so this wasnt added sry
+    end
+    --
+    if (PingSpikeEnabled and Key == PingSpikeKey) then
+        if getgenv().Script["PINGSPIKE_RealSpike"] then
+            --// Removed
+        else
+            Network.IncomingReplicationLag = getgenv().Script["PINGSPIKE_Replicate"]
+            task.wait(getgenv().Script["PINGSPIKE_Time"])
+            Network.IncomingReplicationLag = 0
+        end
+    end
+    --
+    if (HideVisualEnabled and Key == HideVisualKey) then
+        SpdwarePrivate.Bools.CanFOVsDraw = not SpdwarePrivate.Bools.CanFOVsDraw
+    end
+    --
+    if (ServerHopEnabled and Key == ServerHopKey) then
+        game:GetService("TeleportService"):Teleport(game.PlaceId, LocalPlayer) 
+    end
+
+    if (RejoinEnabled and Key == RejoinKey) then
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+    end
+    --
+    if (PanicEnabled and Key == PanicKey) then
+        SpdwarePrivate:Disconnect()
+    end
+end)
+--
+local CurrentMode = getgenv().Script["SILENT_Mode"]
+--
+SpdwarePrivate:Thread("Sticky Aim", RunService[getgenv().Script["FRAMEWORK_Threading"]["Other Threads"]], function()
+    if getgenv().Script["SILENT_Sticky"] then return end;
+    --
+    if CurrentMode == "Target" and getgenv().Script["SILENT_Synchronize"] then
+        SpdwarePrivate.Players[2] = SpdwarePrivate.Players[1]
+    elseif CurrentMode == "FOV" then
+        SpdwarePrivate.Players[2] = SpdwarePrivate:ChoosePriority("Silent")
+    end
+end)
+--
+SpdwarePrivate:Thread("Aimbot Thread", RunService[getgenv().Script["FRAMEWORK_Threading"]["Main Threads"]], function()
+    SpdwarePrivate:AimAssistActivation()
+end)
+--
+SpdwarePrivate:Thread("Misc", RunService[getgenv().Script["FRAMEWORK_Threading"]["Other Threads"]], LPH_NO_VIRTUALIZE(function()
+    SpdwarePrivate:ThreadFunction(SpdwarePrivate.UpdatePing, "0x04")
+end))
+--
+SpdwarePrivate:Thread("Resolver Thread", RunService.Heartbeat, function()
+    SpdwarePrivate:SmoothVelocity({SpdwarePrivate.Players[1], SpdwarePrivate.Players[2]})
+end)
+--
+SpdwarePrivate:Thread("Drawing Thread", RunService[getgenv().Script["FRAMEWORK_Threading"]["Other Threads"]], LPH_NO_VIRTUALIZE(function()
+    SpdwarePrivate:ThreadFunction(SpdwarePrivate.UpdateDrawings, "2x01")
+end))
+--
+if (getgenv().Script["GLOBAL_UnlockFPS"]) then
+    setfpscap(tonumber(getgenv().Script["GLOBAL_FPSCap"]))
+end
+getgenv().esp = {
+
+    AutoStep = true, -- automatically updates the esp, you can disable this and use Player:Step() if you want to manually update them
+    CharacterSize = Vector3.new(4, 5.75, 1.5),
+    CharacterOffset = CFrame.new(0, -0.25, 0),
+    UseBoundingBox = false, -- will use bounding box instead of size preset for dynamic box
+
+    PriorityColor = Color3.new(1,0.25,0.25),
+
+    BoxEnabled = true,
+    BoxCorners = true,
+    BoxDynamic = false,
+    BoxStaticXFactor = 1.3,
+    BoxStaticYFactor = 2.1,
+    BoxColor = Color3.fromRGB(255, 255, 255),
+    
+    SkeletonEnabled = true,
+    SkeletonColor = Color3.fromRGB(255, 255, 255),
+    SkeletonMaxDistance = 300,
+
+    ChamsEnabled = true,
+    ChamsInnerColor = Color3.fromRGB(102, 60, 153),
+    ChamsOuterColor = Color3.fromRGB(0, 0, 0),
+    ChamsInnerTransparency = 0.5,
+    ChamsOuterTransparency = 0.2,
+
+
+    TextEnabled = true,
+    TextColor = Color3.fromRGB(255, 255, 255),
+    TextLayout = {
+        ['nametag']  = { enabled = true, position = 'top', order = 1 },
+        ['name']     = { enabled = true, position = 'top', order = 2 },
+        ['health']   = { enabled = true, position = 'left', order = 1, bar = 'health' },
+        ['armor']    = { enabled = true, position = 'left', order = 2, bar = 'armor' },
+        ['tool']     = { enabled = true, position = 'bottom', suffix = '', prefix = '', order = 1 },
+        ['distance'] = { enabled = false, position = 'bottom', suffix = 'm', order = 2 },
+    },
+
+    BarLayout = {
+        ['health'] = { enabled = true, position = 'left', order = 1, color_empty = Color3.fromRGB(176, 84, 84), color_full = Color3.fromRGB(140, 250, 140) },
+        ['armor']  = { enabled = true, position = 'left', order = 2, color_empty = Color3.fromRGB(58, 58, 97), color_full = Color3.fromRGB(72, 72, 250) }
+    }
+    
+}
+
+-- // variables
+local runservice = game:GetService('RunService')
+local camera = workspace.CurrentCamera
+local world_to_viewport = camera.WorldToViewportPoint
+local inf = math.huge
+
+local skeleton_connections = {
+    {'UpperTorso', 'Head', Vector3.new(0,0.4,0), Vector3.new(0,-0.2,0)},
+    {'UpperTorso', 'LowerTorso', Vector3.new(0,0.4,0)},
+
+    {'UpperTorso', 'RightUpperArm', Vector3.new(0,0.4,0)},
+    {'UpperTorso', 'LeftUpperArm', Vector3.new(0,0.4,0)},
+    {'RightUpperArm', 'RightHand'},
+    {'LeftUpperArm', 'LeftHand'},
+
+    {'LowerTorso', 'LeftUpperLeg'},
+    {'LeftUpperLeg', 'LeftFoot'},
+    {'LowerTorso', 'RightUpperLeg'},
+    {'RightUpperLeg', 'RightFoot'}
+}
+
+function vector2_floor(vector2)
+    return Vector2.new(math.floor(vector2.X), math.floor(vector2.Y))
+end
+
+function cframe_to_viewport(cframe, floor)
+    local position, visible = world_to_viewport(camera, cframe * (cframe - cframe.p):ToObjectSpace(camera.CFrame - camera.CFrame.p).p)
+    if floor then
+        position = vector2_floor(position)
+    end
+    return position, visible
+end
+
+-- // drawing
+local old; old = hookfunction(Drawing.new, function(class, properties)
+    local drawing = old(class)
+    for i,v in next, properties or {} do
+        drawing[i] = v
+    end
+    return drawing
+end)
+
+-- // player
+getgenv().players = {}
+local player = {}
+player.__index = player
+
+function player:Check()
+    
+    local character = self.instance.Character
+    local rootpart = character and character:FindFirstChild('HumanoidRootPart')
+    local torso = character and character:FindFirstChild('UpperTorso')
+    local humanoid = rootpart and character:FindFirstChild('Humanoid')
+    local bodyeffects = character and character:FindFirstChild('BodyEffects')
+    local armor = bodyeffects and bodyeffects:FindFirstChild('Armor')
+
+    if not humanoid or 0 >= humanoid.Health then
+        return false
+    end
+
+    local screen_position, screen_visible = cframe_to_viewport(torso.CFrame * esp.CharacterOffset, true)
+
+    if not screen_visible then
+        return false
+    end
+
+    return true, {
+        character = character,
+        rootpart = rootpart,
+        humanoid = humanoid,
+        bodyeffects = bodyeffects,
+        armor = armor,
+        position = screen_position,
+        cframe = rootpart.CFrame * esp.CharacterOffset,
+        health = humanoid.Health,
+        maxhealth = humanoid.MaxHealth,
+        healthfactor = humanoid.Health / humanoid.MaxHealth,
+        armorfactor = armor.Value / 200,
+        distance = (rootpart.CFrame.p - camera.CFrame.p).magnitude
+    }
+    
+end
+
+function player:Step(delta)
+
+    local check_pass, check_data = self:Check()
+
+    self:SetVisible(false)
+
+    if not check_pass then
+        return
+    else
+        self.visible = true
+    end
+    
+    local size = self:GetBoxSize(check_data.position, check_data.cframe)
+    local position = vector2_floor(check_data.position - size / 2)
+    local color = self.priority and esp.PriorityColor
+    local box_drawings = self.drawings.box
+
+    if esp.BoxEnabled and esp.BoxCorners then
+
+        local corner_size = size.X / 3
+
+        box_drawings[9].Position = position
+        box_drawings[10].Position = position + Vector2.new(size.X - 1, 0)
+        box_drawings[11].Position = position + Vector2.new(0, size.Y - corner_size)
+        box_drawings[12].Position = position + Vector2.new(size.X - 1, size.Y - corner_size)
+
+        box_drawings[13].Position = position
+        box_drawings[14].Position = position + Vector2.new(size.X - corner_size, 0)
+        box_drawings[15].Position = position + Vector2.new(0, size.Y - 1)
+        box_drawings[16].Position = position + Vector2.new(size.X - corner_size, size.Y - 1)
+
+        for i = 1, 8 do
+            local outline = box_drawings[i]
+            local inline = box_drawings[i + 8]
+
+            inline.Visible = true
+            outline.Visible = true
+            inline.Filled = true
+            outline.Filled = true
+            inline.Color = color or (self.useboxcolor and self.boxcolor) or esp.BoxColor
+
+            outline.Position = inline.Position - Vector2.new(1, 1)
+            
+            if i > 4 then
+                inline.Size = Vector2.new(corner_size, 1)
+                outline.Size = Vector2.new(corner_size + 2, 3)
+            else
+                inline.Size = Vector2.new(1, corner_size)
+                outline.Size = Vector2.new(3, corner_size + 2)
+            end
+        end
+
+
+
+    elseif esp.BoxEnabled then
+        local outline = box_drawings[1]
+        local inline = box_drawings[9]
+
+        outline.Visible = true
+        outline.Size = size
+        outline.Position = position
+
+        inline.Visible = true
+        inline.Size = size
+        inline.Position = position
+        inline.Color = color or (self.useboxcolor and self.boxcolor) or esp.BoxColor
+    end
+    
+    self.highlight.Enabled = esp.ChamsEnabled
+    self.highlight.FillColor = (self.usehighlightcolor and self.highlightcolor) or esp.ChamsInnerColor
+    self.highlight.FillTransparency = esp.ChamsInnerTransparency
+    self.highlight.OutlineColor = (self.usehighlightcolor and self.outlinehighlightcolor) or esp.ChamsOuterColor
+    self.highlight.OutlineTransparency = esp.ChamsOuterTransparency
+    self.highlight.Parent = check_data.character
+    self.highlight.Adornee = check_data.character
+
+    local bar_data = self:GetBarData(check_data)
+    local bar_positions = { top = 0, bottom = 0, left = 0, right = 0 }
+
+    for idx, data in next, self.drawings.bar do
+        local flag = data[1]
+        local layout = data[2]
+        local outline = data[3]
+        local inline = data[4]
+        local data = bar_data[flag]
+
+        if not layout.enabled or data.enabled == false then
+            continue
+        end
+
+        local progress = data.progress or 0
+        local vertical = layout.position == 'left' or layout.position == 'right'
+
+        outline.Visible = true
+        inline.Visible = true
+
+        outline.Size = vertical and Vector2.new(3, size.Y + 2) or Vector2.new(size.X + 2, 3)
+        outline.Position = position + (
+            layout.position == 'top' and Vector2.new(-1, -(5 + bar_positions.top)) or
+            layout.position == 'bottom' and Vector2.new(-1, size.Y + 2 + bar_positions.bottom) or
+            layout.position == 'left' and Vector2.new(-5-bar_positions.left, -1) or
+            layout.position == 'right' and Vector2.new(size.X + 2 + bar_positions.right, -1)
+        )
+
+        inline.Color = layout.color_empty:lerp(layout.color_full, progress)
+        inline.Size = vertical and Vector2.new(1, progress * size.Y) or Vector2.new(progress * size.X, 1)
+
+        if vertical then
+            inline.Position = outline.Position + Vector2.new(1,1 + size.Y - progress * size.Y)
+        else
+            inline.Position = outline.Position + Vector2.new(size.X - progress * size.X ,1)
+        end
+
+        bar_positions[layout.position] += 4
+
+    end
+
+    if esp.TextEnabled then
+        local text_data = self:GetTextData(check_data)
+        local text_positions = { top = bar_positions.top, bottom = bar_positions.bottom, left = 0, right = 0 }
+
+        for idx, data in next, self.drawings.text do
+            local flag = data[1]
+            local layout = data[2]
+            local drawing = data[3]
+            local data = text_data[flag]
+
+            if not layout.enabled or data.enabled == false then
+                continue
+            end
+
+            drawing.Visible = true
+            drawing.Text = (layout.prefix or '') .. (data.text or '') .. (layout.suffix or '')
+            drawing.Color = data.color or color or layout.color or esp.TextColor
+
+            if layout.bar then
+                drawing.Position = position + (
+                    layout.position == 'left' and Vector2.new(-(bar_positions.left + drawing.TextBounds.X + 2), size.Y - bar_data[layout.bar].progress * size.Y - 3) or
+                    layout.position == 'right' and Vector2.new(size.X + bar_positions.right + 2, size.Y - bar_data[layout.bar].progress * size.Y -3)               
+                )
+            else
+                drawing.Position = position + (
+                    layout.position == 'top' and Vector2.new(size.X / 2, -3 - (text_positions.top + 14)) or
+                    layout.position == 'bottom' and Vector2.new(size.X / 2, size.Y + text_positions.bottom + 2) or
+                    layout.position == 'left' and Vector2.new(-(bar_positions.left + drawing.TextBounds.X + 2), text_positions.left - 3) or
+                    layout.position == 'right' and Vector2.new(size.X + bar_positions.right + 2, size.Y + text_positions.right - 3)               
+                )
+    
+                text_positions[layout.position] += 14
+            end
+
+        end 
+    end
+
+    if esp.SkeletonEnabled and esp.SkeletonMaxDistance > check_data.distance then
+
+        local cache = {}
+
+        for idx, connection_data in next, skeleton_connections do
+            local drawing = self.drawings.skeleton[idx]
+            local part_a = check_data.character:FindFirstChild(connection_data[1])
+            local part_b = check_data.character:FindFirstChild(connection_data[2])
+
+            if part_a and part_b then
+                local screen_position_a = cache[part_a] or cframe_to_viewport(part_a.CFrame + (connection_data[3] or Vector3.new()), true)
+                local screen_position_b = cache[part_b] or cframe_to_viewport(part_b.CFrame + (connection_data[4] or Vector3.new()), true)
+
+                cache[part_a] = screen_position_a
+                cache[part_b] = screen_position_b
+
+                drawing.Visible = true
+                drawing.Color = color or esp.SkeletonColor
+                drawing.From = screen_position_a
+                drawing.To = screen_position_b
+            end
+        end
+    end
+
+
+end
+
+function player:GetTextData(data)
+    local tool = data.character:FindFirstChildOfClass('Tool')
+    return {
+        ['nametag']  = { text = self.nametag_text, enabled = self.nametag_enabled, color = self.nametag_color },
+        ['name']     = { text = self.instance.DisplayName },
+        ['armor']    = { text = tostring(math.floor(data.armor.Value)), color = esp.BarLayout.armor.color_empty:lerp(esp.BarLayout.armor.color_full, data.armorfactor)},
+        ['health']   = { text = tostring(math.floor(data.health)), color = esp.BarLayout.health.color_empty:lerp(esp.BarLayout.health.color_full, data.healthfactor) },
+        ['distance'] = { text = tostring(math.floor(data.distance)) },
+        ['tool']     = { text = tool and tool.Name, enabled = tool ~= nil }
+    }
+end
+
+function player:GetBarData(data) -- progress should be a number 0-1, you can get this by doing value / maxvalue aka armor / maxarmor
+    return {
+        ['health'] = { progress = data.healthfactor },
+        ['armor'] = { progress = data.armorfactor }
+    }
+end
+
+function player:GetBoxSize(position, cframe)
+    if esp.BoxDynamic then
+        local size = esp.CharacterSize
+        
+        if esp.UseBoundingBox then
+            _, size = self.instance.Character:GetBoundingBox()
+        end
+
+        local x = cframe_to_viewport(cframe * CFrame.new(size.X, 0, 0))
+        local y = cframe_to_viewport(cframe * CFrame.new(0, size.Y, 0))
+        local z = cframe_to_viewport(cframe * CFrame.new(0, 0, size.Z))
+
+        local SizeX = math.max(math.abs(position.X - x.X), math.abs(position.X - z.X))
+        local SizeY = math.max(math.abs(position.Y - y.Y), math.abs(position.Y - x.Y))
+
+        return Vector2.new(math.clamp(math.floor(SizeX), 3, inf), math.clamp(math.floor(SizeY), 6, inf))
+    else
+        local distance = (camera.CFrame.p - cframe.p).magnitude
+        local factor = 1 / ((distance / 3) * math.tan(math.rad(camera.FieldOfView / 2)) * 2) * 1000
+        return Vector2.new(math.clamp(math.floor(factor * esp.BoxStaticXFactor), 3, inf), math.clamp(math.floor(factor * esp.BoxStaticYFactor), 6, inf))
+    end
+end
+
+function player:SetPriority(bool)
+    self.priority = bool
+end
+
+function player:GetPriority()
+    return self.priority
+end
+
+function player:SetBoxColorEnabled(bool)
+    self.useboxcolor = bool
+end
+
+function player:SetBoxColor(color)
+    self.boxcolor = color
+end
+
+function player:SetHighlightColorEnabled(bool)
+    self.usehighlightcolor = bool
+end
+
+function player:SetHighlightColor(color, color2)
+    self.highlightcolor = color
+    self.outlinehighlightcolor = color2
+end
+
+function player:SetNametagText(str)
+    self.nametag_text = str
+end
+
+function player:SetNametagEnabled(bool)
+    self.nametag_enabled = bool
+end
+
+function player:SetNametagColor(color)
+    self.nametag_color = color
+end
+
+function player:SetNametag(str, bool, color)
+    self:SetNametagText(str)
+    self:SetNametagEnabled(bool)
+    self:SetNametagColor(color)
+end
+
+function player:SetVisible(bool)
+    if self.visible ~= bool then
+        self.visible = bool
+        for i,v in next, self.drawings.box do v.Visible = bool end
+        for i,v in next, self.drawings.skeleton do v.Visible = bool end
+        for i,v in next, self.drawings.text do v[3].Visible = bool end
+        for i,v in next, self.drawings.bar do v[3].Visible = bool; v[4].Visible = bool end
+    end
+end
+
+-- // new player
+function esp.NewPlayer(player_instance)
+    local player = setmetatable({}, player)
+
+    player.instance = player_instance
+    player.priority = false
+    player.useboxcolor = false
+    player.nametag_enabled = false
+    player.nametag_text = 'nametag'
+    player.nametag_color = Color3.new(1,1,1)
+    player.boxcolor = Color3.new(1,1,1)
+
+    player.highlight = Instance.new('Highlight')
+    player.drawings = {
+        text = {},
+        bar = {},
+        skeleton = {},
+        box = {}
+    }
+
+    player.remove_esp = function() 
+        for i,v in next, player.drawings.box do v:Remove() end
+        for i,v in next, player.drawings.skeleton do v:Remove() end
+        for i,v in next, player.drawings.text do v[3]:Remove() end
+        for i,v in next, player.drawings.bar do v[3]:Remove(); v[4]:Remove() end
+
+        player.highlight:Destroy()
+    end
+
+    for i = 1, 8 do
+        player.drawings.box[i] = Drawing.new('Square')
+    end
+
+    for i = 9, 16 do
+        player.drawings.box[i] = Drawing.new('Square')
+    end
+
+    for i = 1, 10 do
+        player.drawings.skeleton[i] = Drawing.new('Line', { Thickness = 1 })
+    end
+
+    for flag, layout in next, esp.TextLayout do
+        table.insert(player.drawings.text, { 
+            flag,
+            layout,
+            Drawing.new('Text', { Size = 13, Font = 2, Outline = true, Center = layout.position == 'top' or layout.position == 'bottom' }) 
+        })
+    end
+
+    for flag, layout in next, esp.BarLayout do
+        table.insert(player.drawings.bar, { 
+            flag,
+            layout,
+            Drawing.new('Square', { Thickness = 1, Filled = true }),
+            Drawing.new('Square', { Thickness = 1, Filled = true }),
+        })
+    end
+
+    table.sort(player.drawings.text, function(a,b)
+        return a[2].order < a[2].order
+    end)
+
+    table.sort(player.drawings.bar, function(a,b)
+        return a[2].order < a[2].order
+    end)
+    
+    table.insert(players, player)
+    return player
+end
+
+-- // update
+game:GetService('RunService').PreRender:Connect(function(delta)
+    if esp.AutoStep then
+        for i, player in next, players do
+            player:Step(delta)
+        end
+    end
+end)
+
+for i,v in next, game.Players:GetPlayers() do 
+esp.NewPlayer(v)
+end 
+-- // return
+return esp
